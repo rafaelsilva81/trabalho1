@@ -29,10 +29,17 @@ void Parede::criar()
   }
 
   // Desabilita o culling para que as faces de trás também sejam desenhadas
-  /* glDisable(GL_CULL_FACE); */
+  glEnable(GL_CULL_FACE);
 
-  // Face da parede
-  GUI::drawBox(-5, 0, 0, 5, 5, 0.02);
+  // Parede onde
+  // x = 5 e y = 5
+  glBegin(GL_QUADS);
+  glNormal3f(0.0, 0.0, -1.0);
+  glVertex3f(-5.0, 0.0, -0.05);
+  glVertex3f(-5.0, 5.0, -0.05);
+  glVertex3f(5.0, 5.0, -0.05);
+  glVertex3f(5.0, 0.0, -0.05);
+  glEnd();
 }
 
 void Parede::desenha()

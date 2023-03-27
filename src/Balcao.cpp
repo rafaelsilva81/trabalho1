@@ -148,7 +148,7 @@ void Balcao::criar()
 
   // Face inferior
   glBegin(GL_POLYGON);
-  glNormal3f(0.0, 1.0, 0.0);
+  glNormal3f(0.0, 0, 0.0);
   glVertex3f(3.0, 0, -1.2);
   glVertex3f(3.0, 0, -0.3);
   glVertex3f(2.3, 0, -0.3);
