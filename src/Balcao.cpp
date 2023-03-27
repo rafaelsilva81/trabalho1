@@ -66,7 +66,7 @@ void Balcao::criar()
 
   // Face direita
   glBegin(GL_POLYGON);
-  glNormal3f(-3.0, 0.0, 0.0);
+  glNormal3f(1.0, 0.0, 0.0);
   glVertex3f(-3.0, 0, -0.3);
   glVertex3f(-3.0, 0, 0.3);
   glVertex3f(-3.0, 1.0, 0.3);
@@ -75,7 +75,7 @@ void Balcao::criar()
 
   // Face esquerda
   glBegin(GL_POLYGON);
-  glNormal3f(3.0, 0.0, 0.0);
+  glNormal3f(-1.0, 0.0, 0.0);
   glVertex3f(3.0, 0, -0.3);
   glVertex3f(3.0, 1.0, -0.3);
   glVertex3f(3.0, 1.0, 0.3);
@@ -112,7 +112,7 @@ void Balcao::criar()
 
   // Face lateral direita
   glBegin(GL_POLYGON);
-  glNormal3f(0.0, 1.0, 0);
+  glNormal3f(-1.0, 0.0, 0.0);
   glVertex3f(3.0, 0.0, -0.3);
   glVertex3f(3.0, 0.0, -1.2);
   glVertex3f(3.0, 1.0, -1.2);
@@ -130,7 +130,7 @@ void Balcao::criar()
 
   // Face lateral esquerda
   glBegin(GL_POLYGON);
-  glNormal3f(0.0, 1.0, 0);
+  glNormal3f(0.0, 0.0, 1.0);
   glVertex3f(2.3, 0.0, -1.2);
   glVertex3f(2.3, 0.0, -0.3);
   glVertex3f(2.3, 1.0, -0.3);
@@ -139,7 +139,7 @@ void Balcao::criar()
 
   // Face Superior
   glBegin(GL_POLYGON);
-  glNormal3f(0.0, 0.0, 0.0);
+  glNormal3f(0.0, 1.0, 0.0);
   glVertex3f(3.0, 1.0, -1.2);
   glVertex3f(2.3, 1.0, -1.2);
   glVertex3f(2.3, 1.0, -0.3);

@@ -9,6 +9,7 @@
 // Objetos importados
 #include "Tamborete.h"
 #include "Barril.h"
+#include "Caneca.h"
 
 // Objetos não interativos
 #include "Parede.h"
@@ -24,6 +25,7 @@ Balcao *balcao = new Balcao(2, 0, 2.5, 0, 180, 0, 1, 1, 1, false, false);
 
 Tamborete *tamborete = new Tamborete(3, 0, 2, 0, 0, 0, 1, 1, 1, false, true);
 Barril *barril = new Barril(0, 0, 0, 0, 0, 0, 1, 1, 1, false, true);
+Caneca *caneca = new Caneca(0, 0, 0, 0, 0, 0, 1, 1, 1, false, true);
 
 Parede *paredeLeft = new Parede(-5, 0, 0, 0, 270, 0, 1, 1, 1, false, false);
 Parede *paredeBack = new Parede(0, 0, -5, 0, 0, 0, 1, 1, 1, false, false);
@@ -71,10 +73,11 @@ void desenha()
 int main(int argc, char *argv[])
 {
   objetos.push_back(mesa);
-  /*  objetos.push_back(balcao); */
+  objetos.push_back(balcao);
 
   objetos.push_back(tamborete);
-  objetos.push_back(barril);
+  /* objetos.push_back(barril); */
+  objetos.push_back(caneca);
 
   // GUI gui(800,600); // (largura, altura)
   GUI gui = GUI(800, 600, desenha);
