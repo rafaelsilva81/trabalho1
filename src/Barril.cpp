@@ -1,9 +1,9 @@
-#include "Parede.h"
+#include "Barril.h"
 #include <gui.h>
 
 using namespace std;
 
-Parede::Parede(float t_x, float t_y, float t_z,
+Barril::Barril(float t_x, float t_y, float t_z,
                float r_x, float r_y, float r_z,
                float s_x, float s_y, float s_z,
                bool sel, bool cl)
@@ -21,21 +21,17 @@ Parede::Parede(float t_x, float t_y, float t_z,
   local_coord = cl;
 }
 
-void Parede::criar()
+void Barril::criar()
 {
-  if (local_coord)
-  {
-    GUI::drawOrigin(1); // Desenha o eixo local
-  }
+  Model3DS *barril = new Model3DS("./3ds/barril.3DS");
 
-  // Desabilita o culling para que as faces de trás também sejam desenhadas
-  /* glDisable(GL_CULL_FACE); */
-
-  // Face da parede
-  GUI::drawBox(-5, 0, 0, 5, 5, 0.02);
+  glScalef(0.007, 0.007, 0.007);
+  glRotatef(90, 1, 0, 0);
+  glTranslatef(0, 0, -56.5);
+  barril->draw();
 }
 
-void Parede::desenha()
+void Barril::desenha()
 {
   glPushMatrix();
   Objeto::desenha(); // T.Rz.Ry.Rx.S. p

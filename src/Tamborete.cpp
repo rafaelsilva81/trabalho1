@@ -4,9 +4,9 @@
 using namespace std;
 
 Tamborete::Tamborete(float t_x, float t_y, float t_z,
-           float r_x, float r_y, float r_z,
-           float s_x, float s_y, float s_z,
-           bool sel, bool cl)
+                     float r_x, float r_y, float r_z,
+                     float s_x, float s_y, float s_z,
+                     bool sel, bool cl)
 {
   trans_x = t_x;
   trans_y = t_y;
@@ -23,13 +23,12 @@ Tamborete::Tamborete(float t_x, float t_y, float t_z,
 
 void Tamborete::criar()
 {
-    Model3DS *tamborete = new Model3DS("./3ds/tamborete.3DS");
+  Model3DS *tamborete = new Model3DS("./3ds/tamborete.3DS");
 
-    glScalef(0.002, 0.002, 0.002);
-    glTranslatef(0, 1, 0);
-    glRotatef(-90, 1, 0, 0);
-    tamborete->draw();
-
+  glScalef(0.003, 0.003, 0.003);
+  glRotatef(-90, 1, 0, 0);
+  glTranslatef(0, 1, 0);
+  tamborete->draw();
 }
 
 void Tamborete::desenha()
