@@ -4,6 +4,9 @@
 #include "Objeto.h"
 #include "Balcao.h"
 #include "Mesa.h"
+#include "Tamborete.h"
+
+#include "Parede.h"
 
 #include "model3ds.h"
 
@@ -12,8 +15,11 @@ using namespace std;
 #include <gui.h>
 
 Mesa *mesa = new Mesa(0, 0, 0, 0, 0, 0, 1, 1, 1, false, false);
-Balcao *balcao2 = new Balcao(2, 0, 2.5, 0, 180, 0, 1, 1, 1, false, false);
-Model3DS *tamborete = new Model3DS("./3ds/tamborete.3DS");
+Balcao *balcao = new Balcao(2, 0, 2.5, 0, 180, 0, 1, 1, 1, false, false);
+Tamborete *tamborete = new Tamborete(0, 0, 0, 0, 0, 0, 1, 1, 1, false, true);
+
+Parede *paredeLeft = new Parede(-5, 0, 0, 0, 270, 0, 1, 1, 1, false, false);
+Parede *paredeBack = new Parede(0, 0, -5, 0, 0, 0, 1, 1, 1, false, false);
 
 vector<Objeto *> objetos;
 
@@ -47,15 +53,19 @@ void desenha()
 
   displayInner();
 
-  tamborete->draw();
-
+  glPushMatrix();
+    paredeLeft->desenha();
+    paredeBack->desenha();
+  glPopMatrix();
+  
   GUI::displayEnd();
 }
 
 int main(int argc, char *argv[])
 {
-  objetos.push_back(mesa);
-  objetos.push_back(balcao2);
+ /*  objetos.push_back(mesa);
+  objetos.push_back(balcao); */
+  objetos.push_back(tamborete);
 
   // GUI gui(800,600); // (largura, altura)
   GUI gui = GUI(800, 600, desenha);
