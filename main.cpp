@@ -5,12 +5,15 @@
 #include "Balcao.h"
 #include "Mesa.h"
 
+#include "model3ds.h"
+
 using namespace std;
 
 #include <gui.h>
 
 Mesa *mesa = new Mesa(0, 0, 0, 0, 0, 0, 1, 1, 1, false, false);
 Balcao *balcao2 = new Balcao(2, 0, 2.5, 0, 180, 0, 1, 1, 1, false, false);
+Model3DS *tamborete = new Model3DS("./3ds/tamborete.3DS");
 
 vector<Objeto *> objetos;
 
@@ -43,6 +46,8 @@ void desenha()
   GUI::displayInit();
 
   displayInner();
+
+  tamborete->draw();
 
   GUI::displayEnd();
 }
