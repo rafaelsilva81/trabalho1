@@ -3,11 +3,12 @@
 
 using namespace std;
 
-Prateleira::Prateleira(float t_x, float t_y, float t_z,
+Prateleira::Prateleira(int id, float t_x, float t_y, float t_z,
                        float r_x, float r_y, float r_z,
                        float s_x, float s_y, float s_z,
-                       bool sel, bool cl)
+                       bool sel)
 {
+  object_id = id;
   trans_x = t_x;
   trans_y = t_y;
   trans_z = t_z;
@@ -18,15 +19,10 @@ Prateleira::Prateleira(float t_x, float t_y, float t_z,
   scale_y = s_y;
   scale_z = s_z;
   selected = sel;
-  local_coord = cl;
 }
 
 void Prateleira::criar()
 {
-  if (local_coord)
-  {
-    GUI::drawOrigin(1); // Desenha o eixo local
-  }
 
   GUI::setColor(0.5451, 0.2706, 0.0745, 1, true); // Pintura cor da madeira
 
@@ -99,4 +95,9 @@ void Prateleira::desenha()
   Objeto::desenha(); // T.Rz.Ry.Rx.S. p
   criar();
   glPopMatrix();
+}
+
+std::string Prateleira::getClassName()
+{
+  return "Prateleira";
 }

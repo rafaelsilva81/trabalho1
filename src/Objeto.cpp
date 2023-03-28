@@ -1,5 +1,6 @@
 #include "Objeto.h"
 #include <gui.h>
+#include <string>
 
 using namespace std;
 

@@ -3,11 +3,12 @@
 
 using namespace std;
 
-Caneca::Caneca(float t_x, float t_y, float t_z,
+Caneca::Caneca(int id, float t_x, float t_y, float t_z,
                float r_x, float r_y, float r_z,
                float s_x, float s_y, float s_z,
-               bool sel, bool cl)
+               bool sel)
 {
+  object_id = id;
   trans_x = t_x;
   trans_y = t_y;
   trans_z = t_z;
@@ -18,7 +19,6 @@ Caneca::Caneca(float t_x, float t_y, float t_z,
   scale_y = s_y;
   scale_z = s_z;
   selected = sel;
-  local_coord = cl;
 }
 
 void Caneca::criar()
@@ -37,4 +37,9 @@ void Caneca::desenha()
   Objeto::desenha(); // T.Rz.Ry.Rx.S. p
   criar();
   glPopMatrix();
+}
+
+std::string Caneca::getClassName()
+{
+  return "Caneca";
 }
