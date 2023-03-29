@@ -24,12 +24,20 @@ Tamborete::Tamborete(int id, float t_x, float t_y, float t_z,
 
 void Tamborete::criar()
 {
+
+  if (show_coord)
+  {
+    GUI::drawOrigin(1);
+  }
+
   Model3DS *tamborete = new Model3DS("./3ds/tamborete.3DS");
 
   glScalef(0.003, 0.003, 0.003);
   glRotatef(-90, 1, 0, 0);
   glTranslatef(0, 1, 0);
-  tamborete->draw(true);
+
+  GUI::setColor(0.5451, 0.2706, 0.0745, 1, true); // Pintura cor da madeira
+  tamborete->draw(selected);                      // Só pinta se não estiver selecionado
 }
 
 void Tamborete::desenha()

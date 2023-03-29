@@ -3,6 +3,7 @@
 #include <gui.h>
 #include <fstream>
 #include <string>
+#include <unistd.h>
 
 // Objeto base
 #include "Objeto.h"
@@ -28,7 +29,46 @@ using json = nlohmann::json;
 Parede *paredeLeft = new Parede(1, -5., 0., 0., 0., 270., 0., 1., 1., 1., false, false);
 Parede *paredeBack = new Parede(1, 0., 0., -5., 0., 180., 0., 1., 1., 1., false, false);
 
+int current_object_id = 0;
+int max_object_id = 0;
+
 vector<Objeto *> objetos;
+
+// Indica se o usuário está no "modo de seleção" de objetos
+bool selecting_state = false;
+
+// Indica se o usuário pediu pra salvar a cena
+bool asked_to_save = false;
+
+void transformObjects()
+{
+  // Aplicando transformações no objeto selecionado
+  if (selecting_state)
+  {
+    /* cout << "Aplicando transformações no objeto " + to_string(current_object_id) << endl; */
+    // Translações
+    objetos[current_object_id]->trans_x += 20 * glutGUI::dtx;
+    objetos[current_object_id]->trans_y += 20 * glutGUI::dty;
+    objetos[current_object_id]->trans_z += 20 * glutGUI::dtz;
+
+    // Rotações
+    objetos[current_object_id]->rot_x += 20 * glutGUI::dax;
+    objetos[current_object_id]->rot_y += 20 * glutGUI::day;
+    objetos[current_object_id]->rot_z += 20 * glutGUI::daz;
+
+    // Escalas
+    objetos[current_object_id]->scale_x += 20 * glutGUI::dsx;
+    objetos[current_object_id]->scale_y += 20 * glutGUI::dsy;
+    objetos[current_object_id]->scale_z += 20 * glutGUI::dsz;
+  }
+}
+
+int giveId()
+{
+  cout << "Atribuindo id:" + to_string(max_object_id) << endl;
+  max_object_id += 1;
+  return max_object_id;
+}
 
 void grid()
 {
@@ -85,7 +125,7 @@ void saveScene()
 
   for (auto &obj : objetos)
   {
-    cout << "Salvando objeto " << obj->getClassName() << endl;
+    /* cout << "Salvando objeto " << obj->getClassName() << endl; */
     json objJson;
     objJson["id"] = obj->object_id;
     objJson["class"] = obj->getClassName(); // Nome da classe legivel (Mesa, Balcao)
@@ -105,7 +145,9 @@ void saveScene()
 
   // Salvar o json no arquivo
   std::ofstream o("save.json");
-  o << std::setw(4) << j << std::endl;
+  o << std::setw(4) << j << std::endl; // 4 espaços de indentação
+
+  asked_to_save = true;
 }
 
 void readSave()
@@ -116,7 +158,8 @@ void readSave()
 
   if (!save.is_open())
   {
-    cout << "ARQUIVO DE SAVE NAO ENCONTRADO" << endl;
+    cout << "ARQUIVO DE SAVE NÃO ENCONTRADO" << endl;
+    cout << "Criando cena padrao" << endl;
 
     // Criar o arquivo
     // @TODO: Re-habilitar isso depois
@@ -125,24 +168,70 @@ void readSave()
         createSave.close();
         saveScene();
      */
-    // Criar os objetos da cena inicial
-    Mesa *mesa = new Mesa(1, 3.0, 0.0, 2.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
-    Balcao *balcao = new Balcao(1, -2.0, 0.0, -2.5, 0., 360., 0., 1., 1., 1., false, false);
-    Prateleira *prateleira = new Prateleira(1, -2., 2.5, -4.7, 0., 0., 0., 1., 1., 1., false, false);
 
-    Tamborete *tamborete = new Tamborete(1, 3., 0., 2., 0., 0., 0., 1., 1., 1., false, false);
-    Barril *barril = new Barril(1, 0., 0., 0., 0., 0., 0., 1., 1., 1., false, false);
-    Caneca *caneca = new Caneca(1, 0., 0., 0., 0., 0., 0., 1., 1., 1., false, false);
-    Armario *armario = new Armario(1, -4.0, 0.0, -4.5, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    // Balcao, armario e prateleira no fundo
+    Balcao *balcao = new Balcao(giveId(), -2.0, 0.0, -2.5, 0., 360., 0., 1., 1., 1., false, false);
 
-    objetos.push_back(mesa);
+    Armario *armario_fundo = new Armario(giveId(), -4.0, 0.0, -4.5, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    Barril *barril_armario_fundo_1 = new Barril(giveId(), -4.0, 0.1, -4.5, 0., 0., 0., 1., 1., 1., false, false);
+    Barril *barril_armario_fundo_2 = new Barril(giveId(), -4.0, 1.5, -4.5, 0., 0., 0., 1., 1., 1., false, false);
+
+    Prateleira *prateleira_fundo = new Prateleira(giveId(), -2., 2.2, -4.7, 0., 0., 0., 1., 1., 1., false, false);
+    Caneca *caneca_prateleira_fundo_1 = new Caneca(giveId(), -1.5, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
+    Caneca *caneca_prateleira_fundo_2 = new Caneca(giveId(), -1.8, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
+    Caneca *caneca_prateleira_fundo_3 = new Caneca(giveId(), -2.2, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
+
+    Tamborete *tamborete_balcao_1 = new Tamborete(giveId(), -4.2, 0.0, -1.8, 0., 0., 0., 1., 1., 1., false, false);
+    Tamborete *tamborete_balcao_2 = new Tamborete(giveId(), -3, 0.0, -1.8, 0., 0., 0., 1., 1., 1., false, false);
+    Tamborete *tamborete_balcao_3 = new Tamborete(giveId(), -1.8, 0.0, -1.8, 0., 0., 0., 1., 1., 1., false, false);
+    Tamborete *tamborete_balcao_4 = new Tamborete(giveId(), -0.6, 0.0, -1.8, 0., 0., 0., 1., 1., 1., false, false);
+
+    Caneca *caneca_balcao_1 = new Caneca(giveId(), -4.3, 1, -2.4, 0., 10, 0., 1., 1., 1., false, false);
+    Caneca *caneca_balcao_2 = new Caneca(giveId(), -3.3, 1, -2.4, 0., -20, 0., 1., 1., 1., false, false);
+    Caneca *caneca_balcao_3 = new Caneca(giveId(), -1.8, 1, -2.4, 0., 30, 0., 1., 1., 1., false, false);
+    Caneca *caneca_balcao_4 = new Caneca(giveId(), -0.3, 1, -2.4, 0., 45, 0., 1., 1., 1., false, false);
+
+    Mesa *mesa_1 = new Mesa(giveId(), 3.0, 0.0, 2.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    Tamborete *tamborete_1_mesa_1 = new Tamborete(giveId(), 2.3, 0.0, 2.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    Tamborete *tamborete_2_mesa_1 = new Tamborete(giveId(), 3.8, 0.0, 2.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    Caneca *caneca_1_mesa_1 = new Caneca(giveId(), 3.1, 1, 2.1, 0.0, 90.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    Caneca *caneca_2_mesa_1 = new Caneca(giveId(), 2.8, 1, 2, 0.0, -90.0, 0.0, 1.0, 1.0, 1.0, false, false);
+
     objetos.push_back(balcao);
-    objetos.push_back(prateleira);
 
-    objetos.push_back(tamborete);
-    objetos.push_back(barril);
-    objetos.push_back(caneca);
-    objetos.push_back(armario);
+    objetos.push_back(armario_fundo);
+    objetos.push_back(barril_armario_fundo_1);
+    objetos.push_back(barril_armario_fundo_2);
+
+    objetos.push_back(prateleira_fundo);
+    objetos.push_back(caneca_prateleira_fundo_1);
+    objetos.push_back(caneca_prateleira_fundo_2);
+    objetos.push_back(caneca_prateleira_fundo_3);
+
+    objetos.push_back(tamborete_balcao_1);
+    objetos.push_back(tamborete_balcao_2);
+    objetos.push_back(tamborete_balcao_3);
+    objetos.push_back(tamborete_balcao_4);
+
+    objetos.push_back(caneca_balcao_1);
+    objetos.push_back(caneca_balcao_2);
+    objetos.push_back(caneca_balcao_3);
+    objetos.push_back(caneca_balcao_4);
+
+    objetos.push_back(mesa_1);
+    objetos.push_back(tamborete_1_mesa_1);
+    objetos.push_back(tamborete_2_mesa_1);
+    objetos.push_back(caneca_1_mesa_1);
+    objetos.push_back(caneca_2_mesa_1);
+
+    /*     objetos.push_back(mesa);
+        objetos.push_back(balcao);
+        objetos.push_back(prateleira);
+
+        objetos.push_back(tamborete);
+        objetos.push_back(barril);
+        objetos.push_back(caneca);
+        objetos.push_back(armario); */
 
     // @TODO: Re-habilitar isso depois
     // saveScene();
@@ -150,6 +239,7 @@ void readSave()
   else
   {
     cout << "ARQUIVO DE SAVE ENCONTRADO" << endl;
+    cout << "Lendo arquivo de save..." << endl;
     // Ler os objetos
     // formato do json:
     /*
@@ -225,6 +315,168 @@ void readSave()
       }
     }
   }
+
+  cout << "PROCESSO DE LEITURA DE SAVE CONCLUIDO" << endl;
+}
+
+void drawString(std::string str, int x, int y)
+{
+
+  /*
+    Configura a matriz para o modo de "projection"
+    Em seguida, cria um novo "stack" para a matriz de projection
+    e carrega a matriz identidade
+    cria uma projeção ortogonal 2D que sera como uma "TELA 2D" por cima da tela 3D
+  */
+  glMatrixMode(GL_PROJECTION); // Configura modo "projecao"
+  glPushMatrix();
+  glLoadIdentity();
+  gluOrtho2D(0, 800, 0, 600);
+
+  /*
+    Configura a matriz para o modo de "model_view"
+    Em seguida, cria um novo "stack" para a matriz de model_view
+    e carrega a matriz identidade
+   */
+  glMatrixMode(GL_MODELVIEW);
+  glPushMatrix();
+  glLoadIdentity();
+
+  // Define onde o texto será desenhado (no espaço 2D)
+  glRasterPos2i(x, y);
+
+  // Loop pela palavra
+  for (char c : str)
+    glutBitmapCharacter(GLUT_BITMAP_9_BY_15, c); // Função do GLUT para desenhar um caracter
+
+  /*
+    Restaura a matriz de model_view para o modo anterior
+   */
+  glMatrixMode(GL_MODELVIEW);
+  glPopMatrix();
+
+  /*
+    Restaura a matriz de projection para o modo anterior
+   */
+  glMatrixMode(GL_PROJECTION);
+  glPopMatrix();
+
+  /*
+    **** ESTRUTURA:
+    [PROJECTION] -> Configura a matriz para o modo de "projection"
+      [ORHTO2D] -> Cria uma tela 2D
+      [MODELVIEW] -> Configura a matriz para o modo de "model_view"
+        [RASTER] -> Desenha o texto sobre a camada MODELVIEW que está dentro do ORTHO2D
+      [MODELVIEW] -> Restaura a matriz de model_view para o modo anterior
+    [PROJECTION] -> Restaura a matriz de projection para o modo anterior
+  */
+}
+
+void teclado(unsigned char tecla, int mouseX, int mouseY)
+{
+  GUI::keyInit(tecla, mouseX, mouseY);
+
+  switch (tecla)
+  {
+  case 't':
+    glutGUI::trans_obj = !glutGUI::trans_obj;
+    break;
+  case 'l':
+    glutGUI::trans_luz = !glutGUI::trans_luz;
+    break;
+  case '1':
+    // Criar mesa
+    objetos.push_back(new Mesa(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
+    break;
+  case '2':
+    // Criar balcao
+    objetos.push_back(new Balcao(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
+    break;
+  case '3':
+    // Criar prateleira
+    objetos.push_back(new Prateleira(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
+    break;
+  case '4':
+    // Criar tamborete
+    objetos.push_back(new Tamborete(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
+    break;
+  case '5':
+    // Criar barril
+    objetos.push_back(new Barril(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
+    break;
+  case '6':
+    // Criar caneca
+    objetos.push_back(new Caneca(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
+    break;
+  case '7':
+    // Criar armario
+    objetos.push_back(new Armario(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
+    break;
+  case 's':
+    // Salvar
+    saveScene();
+    break;
+  case 'c':
+    // TODO: Trocar cameras
+    break;
+  case 'p':
+    // Alterar de modo de seleção
+    selecting_state = !selecting_state;
+    // Volta pro id 1
+    current_object_id = 0;
+    objetos[current_object_id]->selected = true;
+    break;
+  case 'n':
+    // Vai pro proximo objeto
+    objetos[current_object_id]->selected = false;
+    // Alterar o objeto atualmente selecionado
+    if (selecting_state)
+    {
+      // Alternar o current_id
+      if (current_object_id >= objetos.size() - 1)
+      {
+        current_object_id = 0;
+      }
+      else
+      {
+        current_object_id++;
+      }
+
+      // Atualizar o objeto selecionado
+      objetos[current_object_id]->selected = true;
+    }
+    break;
+  case 'b':
+    // Volta pro objeto anterior
+    objetos[current_object_id]->selected = false;
+
+    // Alterar o objeto atualmente selecionado
+    if (selecting_state)
+    {
+      // Alternar o current_id
+      if (current_object_id <= 0)
+      {
+        current_object_id = objetos.size() - 1;
+      }
+      else
+      {
+        current_object_id--;
+      }
+
+      // Atualizar o objeto selecionado
+      objetos[current_object_id]
+          ->selected = true;
+    }
+    break;
+  case 'v':
+    // Vetor de Coordenadas
+    if (selecting_state)
+    {
+      objetos[current_object_id]->show_coord = !objetos[current_object_id]->show_coord;
+    }
+  default:
+    break;
+  }
 }
 
 void montarCena()
@@ -269,6 +521,26 @@ void desenha()
 
   grid();
 
+  if (selecting_state)
+  {
+    string s = "SELECIONANDO:" + objetos[current_object_id]->getClassName() + " id" + to_string(current_object_id);
+    // Irá mostrar na tela quando um objeto estiver selecionado
+    drawString(s, 4, 2);
+  }
+
+  if (asked_to_save)
+  {
+    drawString("Salvo com sucesso!", 4, 50);
+    asked_to_save = false;
+  }
+
+  if (selecting_state && objetos[current_object_id]->show_coord)
+  {
+    drawString("MOSTRANDO COORDENADAS", 4, 20);
+  }
+
+  transformObjects();
+
   GUI::displayEnd();
 }
 
@@ -277,7 +549,7 @@ int main(int argc, char *argv[])
 
   readSave();
   // GUI gui(800,600); // (largura, altura)
-  GUI gui = GUI(800, 600, desenha);
+  GUI gui = GUI(800, 600, desenha, teclado);
 }
 
 /*

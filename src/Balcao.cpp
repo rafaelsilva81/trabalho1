@@ -33,6 +33,11 @@ void Balcao::criar()
     GUI::setColor(1, 1, 1, 1, true); // Pinta de branco ao selecionar
   }
 
+  if (show_coord)
+  {
+    GUI::drawOrigin(1);
+  }
+
   // Desabilita o culling para que as faces de trás também sejam desenhadas
   /* glDisable(GL_CULL_FACE); */
 

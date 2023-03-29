@@ -24,12 +24,20 @@ Caneca::Caneca(int id, float t_x, float t_y, float t_z,
 
 void Caneca::criar()
 {
+
+  if (show_coord)
+  {
+    GUI::drawOrigin(1);
+  }
+
   Model3DS *caneca = new Model3DS("./3ds/caneca.3DS");
 
-  glScalef(0.02, 0.02, 0.02);
+  glScalef(0.03, 0.03, 0.03);
   glRotatef(-90, 1, 0, 0);
   glTranslatef(0, 1, 0);
-  caneca->draw(true);
+
+  GUI::setColor(0.5451, 0.2706, 0.0745, 1, true); // Pintura cor da madeira
+  caneca->draw(selected);                         // Só pinta se não estiver selecionado
 }
 
 void Caneca::desenha()
