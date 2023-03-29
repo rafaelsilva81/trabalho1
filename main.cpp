@@ -173,13 +173,13 @@ void readSave()
     Balcao *balcao = new Balcao(giveId(), -2.0, 0.0, -2.5, 0., 360., 0., 1., 1., 1., false, false);
 
     Armario *armario_fundo = new Armario(giveId(), -4.0, 0.0, -4.5, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
-    Barril *barril_armario_fundo_1 = new Barril(giveId(), -4.0, 0.1, -4.5, 0., 0., 0., 1., 1., 1., false, false);
-    Barril *barril_armario_fundo_2 = new Barril(giveId(), -4.0, 1.5, -4.5, 0., 0., 0., 1., 1., 1., false, false);
+    /*   Barril *barril_armario_fundo_1 = new Barril(giveId(), -4.0, 0.1, -4.5, 0., 0., 0., 1., 1., 1., false, false);
+      Barril *barril_armario_fundo_2 = new Barril(giveId(), -4.0, 1.5, -4.5, 0., 0., 0., 1., 1., 1., false, false); */
 
     Prateleira *prateleira_fundo = new Prateleira(giveId(), -2., 2.2, -4.7, 0., 0., 0., 1., 1., 1., false, false);
     Caneca *caneca_prateleira_fundo_1 = new Caneca(giveId(), -1.5, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
-    Caneca *caneca_prateleira_fundo_2 = new Caneca(giveId(), -1.8, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
-    Caneca *caneca_prateleira_fundo_3 = new Caneca(giveId(), -2.2, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
+    /* Caneca *caneca_prateleira_fundo_2 = new Caneca(giveId(), -1.8, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
+    Caneca *caneca_prateleira_fundo_3 = new Caneca(giveId(), -2.2, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false); */
 
     Tamborete *tamborete_balcao_1 = new Tamborete(giveId(), -4.2, 0.0, -1.8, 0., 0., 0., 1., 1., 1., false, false);
     Tamborete *tamborete_balcao_2 = new Tamborete(giveId(), -3, 0.0, -1.8, 0., 0., 0., 1., 1., 1., false, false);
@@ -187,26 +187,38 @@ void readSave()
     Tamborete *tamborete_balcao_4 = new Tamborete(giveId(), -0.6, 0.0, -1.8, 0., 0., 0., 1., 1., 1., false, false);
 
     Caneca *caneca_balcao_1 = new Caneca(giveId(), -4.3, 1, -2.4, 0., 10, 0., 1., 1., 1., false, false);
-    Caneca *caneca_balcao_2 = new Caneca(giveId(), -3.3, 1, -2.4, 0., -20, 0., 1., 1., 1., false, false);
+    /* Caneca *caneca_balcao_2 = new Caneca(giveId(), -3.3, 1, -2.4, 0., -20, 0., 1., 1., 1., false, false); */
     Caneca *caneca_balcao_3 = new Caneca(giveId(), -1.8, 1, -2.4, 0., 30, 0., 1., 1., 1., false, false);
-    Caneca *caneca_balcao_4 = new Caneca(giveId(), -0.3, 1, -2.4, 0., 45, 0., 1., 1., 1., false, false);
+    /* Caneca *caneca_balcao_4 = new Caneca(giveId(), -0.3, 1, -2.4, 0., 45, 0., 1., 1., 1., false, false); */
 
     Mesa *mesa_1 = new Mesa(giveId(), 3.0, 0.0, 2.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
     Tamborete *tamborete_1_mesa_1 = new Tamborete(giveId(), 2.3, 0.0, 2.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
     Tamborete *tamborete_2_mesa_1 = new Tamborete(giveId(), 3.8, 0.0, 2.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
     Caneca *caneca_1_mesa_1 = new Caneca(giveId(), 3.1, 1, 2.1, 0.0, 90.0, 0.0, 1.0, 1.0, 1.0, false, false);
-    Caneca *caneca_2_mesa_1 = new Caneca(giveId(), 2.8, 1, 2, 0.0, -90.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    /* Caneca *caneca_2_mesa_1 = new Caneca(giveId(), 2.8, 1, 2, 0.0, -90.0, 0.0, 1.0, 1.0, 1.0, false, false); */
+
+    Mesa *mesa_2 = new Mesa(giveId(), -3.0, 0.0, 0.5, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    Tamborete *tamborete_1_mesa_2 = new Tamborete(giveId(), -3.6, 0.0, 0.5, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    Tamborete *tamborete_2_mesa_2 = new Tamborete(giveId(), -2.2, 0.0, 0.5, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    Caneca *caneca_1_mesa_2 = new Caneca(giveId(), -3.1, 1, 0.6, 0.0, -84.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    /* Caneca *caneca_2_mesa_2 = new Caneca(giveId(), -2.8, 1, 0.5, 0.0, 98.0, 0.0, 1.0, 1.0, 1.0, false, false); */
+
+    Mesa *mesa_3 = new Mesa(giveId(), -2.5, 0.0, 3.5, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    Tamborete *tamborete_1_mesa_3 = new Tamborete(giveId(), -2.5, 0.0, 4.2, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    Tamborete *tamborete_2_mesa_3 = new Tamborete(giveId(), -2.5, 0.0, 2.8, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    /*  Caneca *caneca_1_mesa_3 = new Caneca(giveId(), -2.4, 1, 3.3, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false); */
+    Caneca *caneca_2_mesa_3 = new Caneca(giveId(), -2.6, 1, 3.6, 0.0, 180.0, 0.0, 1.0, 1.0, 1.0, false, false);
 
     objetos.push_back(balcao);
 
     objetos.push_back(armario_fundo);
-    objetos.push_back(barril_armario_fundo_1);
-    objetos.push_back(barril_armario_fundo_2);
+    /*   objetos.push_back(barril_armario_fundo_1);
+      objetos.push_back(barril_armario_fundo_2); */
 
     objetos.push_back(prateleira_fundo);
     objetos.push_back(caneca_prateleira_fundo_1);
-    objetos.push_back(caneca_prateleira_fundo_2);
-    objetos.push_back(caneca_prateleira_fundo_3);
+    /* objetos.push_back(caneca_prateleira_fundo_2); */
+    /* objetos.push_back(caneca_prateleira_fundo_3); */
 
     objetos.push_back(tamborete_balcao_1);
     objetos.push_back(tamborete_balcao_2);
@@ -214,16 +226,27 @@ void readSave()
     objetos.push_back(tamborete_balcao_4);
 
     objetos.push_back(caneca_balcao_1);
-    objetos.push_back(caneca_balcao_2);
+    /* objetos.push_back(caneca_balcao_2); */
     objetos.push_back(caneca_balcao_3);
-    objetos.push_back(caneca_balcao_4);
+    /* objetos.push_back(caneca_balcao_4); */
 
     objetos.push_back(mesa_1);
     objetos.push_back(tamborete_1_mesa_1);
     objetos.push_back(tamborete_2_mesa_1);
     objetos.push_back(caneca_1_mesa_1);
-    objetos.push_back(caneca_2_mesa_1);
+    /* objetos.push_back(caneca_2_mesa_1); */
 
+    objetos.push_back(mesa_2);
+    objetos.push_back(tamborete_1_mesa_2);
+    objetos.push_back(tamborete_2_mesa_2);
+    objetos.push_back(caneca_1_mesa_2);
+    /* objetos.push_back(caneca_2_mesa_2); */
+
+    objetos.push_back(mesa_3);
+    objetos.push_back(tamborete_1_mesa_3);
+    objetos.push_back(tamborete_2_mesa_3);
+    /* objetos.push_back(caneca_1_mesa_3); */
+    objetos.push_back(caneca_2_mesa_3);
     /*     objetos.push_back(mesa);
         objetos.push_back(balcao);
         objetos.push_back(prateleira);
@@ -424,7 +447,7 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
     selecting_state = !selecting_state;
     // Volta pro id 1
     current_object_id = 0;
-    objetos[current_object_id]->selected = true;
+    objetos[current_object_id]->selected = !objetos[current_object_id]->selected;
     break;
   case 'n':
     // Vai pro proximo objeto
@@ -517,27 +540,32 @@ void desenha()
 {
   GUI::displayInit();
 
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
+  gluLookAt(glutGUI::cam->e.x, glutGUI::cam->e.y, glutGUI::cam->e.z, glutGUI::cam->c.x, glutGUI::cam->c.y, glutGUI::cam->c.z, glutGUI::cam->u.x, glutGUI::cam->u.y, glutGUI::cam->u.z);
+
   montarCena();
 
-  grid();
+  /* grid(); */
 
-  if (selecting_state)
-  {
-    string s = "SELECIONANDO:" + objetos[current_object_id]->getClassName() + " id" + to_string(current_object_id);
-    // Irá mostrar na tela quando um objeto estiver selecionado
-    drawString(s, 4, 2);
-  }
+  /*   if (selecting_state)
+    {
+      string s = "SELECIONANDO:" + objetos[current_object_id]->getClassName() + " id" + to_string(current_object_id);
+      // Irá mostrar na tela quando um objeto estiver selecionado
+      drawString(s, 4, 2);
+    }
 
-  if (asked_to_save)
-  {
-    drawString("Salvo com sucesso!", 4, 50);
-    asked_to_save = false;
-  }
+    if (asked_to_save)
+    {
+      drawString("Salvo com sucesso!", 4, 50);
+      asked_to_save = false;
+    }
 
-  if (selecting_state && objetos[current_object_id]->show_coord)
-  {
-    drawString("MOSTRANDO COORDENADAS", 4, 20);
-  }
+    if (selecting_state && objetos[current_object_id]->show_coord)
+    {
+      drawString("MOSTRANDO COORDENADAS", 4, 20);
+    } */
 
   transformObjects();
 

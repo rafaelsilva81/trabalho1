@@ -24,6 +24,17 @@ Mesa::Mesa(int id, float t_x, float t_y, float t_z,
 
 void Mesa::criar()
 {
+
+  if (selected)
+  {
+    GUI::setColor(1, 1, 1, 1, true); // Pinta de branco ao selecionar
+  }
+
+  if (show_coord)
+  {
+    GUI::drawOrigin(1);
+  }
+
   GUI::setColor(0.5451, 0.2706, 0.0745, 1, true); // Pintura cor da madeira
 
   // Desabilita o culling para que as faces de trás também sejam desenhadas
@@ -76,16 +87,6 @@ void Mesa::criar()
 
   // Habilita o culling novamente
   glEnable(GL_CULL_FACE);
-
-  if (selected)
-  {
-    GUI::setColor(1, 1, 1, 1, true); // Pinta de branco ao selecionar
-  }
-
-  if (show_coord)
-  {
-    GUI::drawOrigin(1);
-  }
 }
 
 void Mesa::desenha()
