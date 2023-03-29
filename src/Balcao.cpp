@@ -6,7 +6,7 @@ using namespace std;
 Balcao::Balcao(int id, float t_x, float t_y, float t_z,
                float r_x, float r_y, float r_z,
                float s_x, float s_y, float s_z,
-               bool sel)
+               bool sel, bool coord)
 {
   object_id = id;
   trans_x = t_x;
@@ -19,12 +19,14 @@ Balcao::Balcao(int id, float t_x, float t_y, float t_z,
   scale_y = s_y;
   scale_z = s_z;
   selected = sel;
+  show_coord = coord;
 }
 
 void Balcao::criar()
 {
 
-  GUI::setColor(0.5451, 0.2706, 0.0745, 1, true); // Pintura cor da madeira
+  // Pintura do objeto (cor de madeira #966F33)
+  GUI::setColor(0.588, 0.439, 0.2, 1, true);
 
   if (selected)
   {

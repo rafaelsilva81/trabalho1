@@ -60,5 +60,6 @@
     "ratio": "cpp",
     "ranges": "cpp",
     "valarray": "cpp"
-  }
+  },
+  "C_Cpp.dimInactiveRegions": false
 }

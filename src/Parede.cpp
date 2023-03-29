@@ -6,7 +6,7 @@ using namespace std;
 Parede::Parede(int id, float t_x, float t_y, float t_z,
                float r_x, float r_y, float r_z,
                float s_x, float s_y, float s_z,
-               bool sel)
+               bool sel, bool coord)
 {
   object_id = id;
   trans_x = t_x;
@@ -19,12 +19,13 @@ Parede::Parede(int id, float t_x, float t_y, float t_z,
   scale_y = s_y;
   scale_z = s_z;
   selected = sel;
+  show_coord = coord;
 }
 
 void Parede::criar()
 {
 
-  // Desabilita o culling para que as faces de trás também sejam desenhadas
+  // Habilita o culling para que a parede não atrapalhe a camera
   glEnable(GL_CULL_FACE);
 
   // Parede onde

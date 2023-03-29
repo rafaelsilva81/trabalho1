@@ -12,6 +12,7 @@ public:
   float rot_x, rot_y, rot_z;
   float scale_x, scale_y, scale_z;
   bool selected;
+  bool show_coord;
   virtual void desenha();
   virtual std::string getClassName() = 0; // Função pura
 };

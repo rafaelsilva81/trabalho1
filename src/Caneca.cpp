@@ -6,7 +6,7 @@ using namespace std;
 Caneca::Caneca(int id, float t_x, float t_y, float t_z,
                float r_x, float r_y, float r_z,
                float s_x, float s_y, float s_z,
-               bool sel)
+               bool sel, bool coord)
 {
   object_id = id;
   trans_x = t_x;
@@ -19,6 +19,7 @@ Caneca::Caneca(int id, float t_x, float t_y, float t_z,
   scale_y = s_y;
   scale_z = s_z;
   selected = sel;
+  show_coord = coord;
 }
 
 void Caneca::criar()
@@ -28,7 +29,7 @@ void Caneca::criar()
   glScalef(0.02, 0.02, 0.02);
   glRotatef(-90, 1, 0, 0);
   glTranslatef(0, 1, 0);
-  caneca->draw();
+  caneca->draw(true);
 }
 
 void Caneca::desenha()

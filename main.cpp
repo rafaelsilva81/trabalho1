@@ -25,8 +25,8 @@ using namespace std;
 using json = nlohmann::json;
 
 // Paredes (não serão objetos interativos)
-Parede *paredeLeft = new Parede(1, -5., 0., 0., 0., 270., 0., 1., 1., 1., false);
-Parede *paredeBack = new Parede(1, 0., 0., -5., 0., 180., 0., 1., 1., 1., false);
+Parede *paredeLeft = new Parede(1, -5., 0., 0., 0., 270., 0., 1., 1., 1., false, false);
+Parede *paredeBack = new Parede(1, 0., 0., -5., 0., 180., 0., 1., 1., 1., false, false);
 
 vector<Objeto *> objetos;
 
@@ -119,20 +119,21 @@ void readSave()
     cout << "ARQUIVO DE SAVE NAO ENCONTRADO" << endl;
 
     // Criar o arquivo
-    ofstream createSave;
-    createSave.open("save.json");
-    createSave.close();
-    saveScene();
-
+    // @TODO: Re-habilitar isso depois
+    /*     ofstream createSave;
+        createSave.open("save.json");
+        createSave.close();
+        saveScene();
+     */
     // Criar os objetos da cena inicial
-    Mesa *mesa = new Mesa(1, 3.0, 0.0, 2.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false);
-    Balcao *balcao = new Balcao(1, -2.0, 0.0, -2.5, 0., 360., 0., 1., 1., 1., false);
-    Prateleira *prateleira = new Prateleira(1, -2., 2.5, -4.7, 0., 0., 0., 1., 1., 1., false);
+    Mesa *mesa = new Mesa(1, 3.0, 0.0, 2.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
+    Balcao *balcao = new Balcao(1, -2.0, 0.0, -2.5, 0., 360., 0., 1., 1., 1., false, false);
+    Prateleira *prateleira = new Prateleira(1, -2., 2.5, -4.7, 0., 0., 0., 1., 1., 1., false, false);
 
-    Tamborete *tamborete = new Tamborete(1, 3., 0., 2., 0., 0., 0., 1., 1., 1., false);
-    Barril *barril = new Barril(1, 0., 0., 0., 0., 0., 0., 1., 1., 1., false);
-    Caneca *caneca = new Caneca(1, 0., 0., 0., 0., 0., 0., 1., 1., 1., false);
-    Armario *armario = new Armario(1, -4.0, 0.0, -4.5, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false);
+    Tamborete *tamborete = new Tamborete(1, 3., 0., 2., 0., 0., 0., 1., 1., 1., false, false);
+    Barril *barril = new Barril(1, 0., 0., 0., 0., 0., 0., 1., 1., 1., false, false);
+    Caneca *caneca = new Caneca(1, 0., 0., 0., 0., 0., 0., 1., 1., 1., false, false);
+    Armario *armario = new Armario(1, -4.0, 0.0, -4.5, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
 
     objetos.push_back(mesa);
     objetos.push_back(balcao);
@@ -143,7 +144,8 @@ void readSave()
     objetos.push_back(caneca);
     objetos.push_back(armario);
 
-    saveScene();
+    // @TODO: Re-habilitar isso depois
+    // saveScene();
   }
   else
   {
@@ -187,40 +189,39 @@ void readSave()
       float s_x = obj["s_x"];
       float s_y = obj["s_y"];
       float s_z = obj["s_z"];
-      bool selected = obj["selected"];
 
       // Criar o objeto
       if (classe == "Mesa")
       {
-        objetos.push_back(new Mesa(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, selected));
+        objetos.push_back(new Mesa(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, false, false));
       }
       else if (classe == "Balcao")
       {
-        objetos.push_back(new Balcao(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, selected));
+        objetos.push_back(new Balcao(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, false, false));
       }
       else if (classe == "Prateleira")
       {
-        objetos.push_back(new Prateleira(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, selected));
+        objetos.push_back(new Prateleira(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, false, false));
       }
       else if (classe == "Tamborete")
       {
-        objetos.push_back(new Tamborete(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, selected));
+        objetos.push_back(new Tamborete(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, false, false));
       }
       else if (classe == "Barril")
       {
-        objetos.push_back(new Barril(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, selected));
+        objetos.push_back(new Barril(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, false, false));
       }
       else if (classe == "Caneca")
       {
-        objetos.push_back(new Caneca(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, selected));
+        objetos.push_back(new Caneca(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, false, false));
       }
       else if (classe == "Armario")
       {
-        objetos.push_back(new Armario(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, selected));
+        objetos.push_back(new Armario(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, false, false));
       }
       else if (classe == "Parede")
       {
-        objetos.push_back(new Parede(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, selected));
+        objetos.push_back(new Parede(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, false, false));
       }
     }
   }
