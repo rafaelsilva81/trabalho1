@@ -52,19 +52,19 @@ void transformObjects()
   {
     /* cout << "Aplicando transformações no objeto " + to_string(current_object_id) << endl; */
     // Translações
-    objetos[current_object_id]->trans_x += 20 * glutGUI::dtx;
-    objetos[current_object_id]->trans_y += 20 * glutGUI::dty;
-    objetos[current_object_id]->trans_z += 20 * glutGUI::dtz;
+    objetos[current_object_id]->trans_x += 10 * glutGUI::dtx;
+    objetos[current_object_id]->trans_y += 10 * glutGUI::dty;
+    objetos[current_object_id]->trans_z += 10 * glutGUI::dtz;
 
     // Rotações
-    objetos[current_object_id]->rot_x += 20 * glutGUI::dax;
-    objetos[current_object_id]->rot_y += 20 * glutGUI::day;
-    objetos[current_object_id]->rot_z += 20 * glutGUI::daz;
+    objetos[current_object_id]->rot_x += 10 * glutGUI::dax;
+    objetos[current_object_id]->rot_y += 10 * glutGUI::day;
+    objetos[current_object_id]->rot_z += 10 * glutGUI::daz;
 
     // Escalas
-    objetos[current_object_id]->scale_x += 20 * glutGUI::dsx;
-    objetos[current_object_id]->scale_y += 20 * glutGUI::dsy;
-    objetos[current_object_id]->scale_z += 20 * glutGUI::dsz;
+    objetos[current_object_id]->scale_x += 10 * glutGUI::dsx;
+    objetos[current_object_id]->scale_y += 10 * glutGUI::dsy;
+    objetos[current_object_id]->scale_z += 10 * glutGUI::dsz;
   }
 }
 
@@ -347,6 +347,8 @@ void readSave()
       {
         objetos.push_back(new Parede(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, false, false));
       }
+
+      // @TODO: Adicionar os novos objetos
     }
   }
 
@@ -446,6 +448,22 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
     // Criar armario
     objetos.push_back(new Armario(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
     break;
+  case 'd':
+    if (selecting_state) {
+      // Deletar objeto
+      objetos.erase(objetos.begin() + current_object_id);
+
+      // Reduzir index
+      if (objetos.size() == 0) {
+        current_object_id = 0;
+        selecting_state = false;
+      }
+      
+      // Volta pro id 1
+      current_object_id = 0
+      objetos[current_object_id]->selected = !objetos[current_object_id]->selected;
+      
+    }
   case 's':
     // Salvar
     saveScene();
@@ -560,7 +578,7 @@ void desenha()
 
   grid();
 
-  /*   if (selecting_state)
+    if (selecting_state)
     {
       string s = "SELECIONANDO:" + objetos[current_object_id]->getClassName() + " id" + to_string(current_object_id);
       // Irá mostrar na tela quando um objeto estiver selecionado
@@ -576,7 +594,7 @@ void desenha()
     if (selecting_state && objetos[current_object_id]->show_coord)
     {
       drawString("MOSTRANDO COORDENADAS", 4, 20);
-    } */
+    }
 
   transformObjects();
 
