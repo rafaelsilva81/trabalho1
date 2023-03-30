@@ -31,13 +31,21 @@ void Microfone::criar()
     GUI::drawOrigin(1);
   }
 
-  // Colorir (#94a3b8)
-  GUI::setColor(0.5804, 0.6392, 0.7216, 1, true);
+  if (selected)
+  {
+    // Amarelo se estiver selecionado
+    GUI::setColor(1, 1, 0, 1, true);
+  }
+  else
+  {
+    // Colorir (#94a3b8)
+    GUI::setColor(0.5804, 0.6392, 0.7216, 1, true);
+  }
 
   glScalef(0.012, 0.012, 0.012);
   glRotatef(270, 90, 0, 0);
   glTranslatef(0, 0, 0);
-  model->draw(selected); // Só pinta se não estiver selecionado
+  model->draw(false); // Só pinta se não estiver selecionado
 }
 
 void Microfone::desenha()

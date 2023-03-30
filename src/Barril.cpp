@@ -31,13 +31,22 @@ void Barril::criar()
     GUI::drawOrigin(1);
   }
 
+  if (selected)
+  {
+    // Amarelo se estiver selecionado
+    GUI::setColor(1, 1, 0, 1, true);
+  }
+  else
+  {
+    // Pintura do objeto (cor de madeira #966F33)
+    GUI::setColor(0.588, 0.439, 0.2, 1, true);
+  }
+
   glScalef(0.02, 0.02, 0.02);
   glRotatef(90, 1, 0, 0);
   glTranslatef(0, 0, -43);
 
-  // Pintura do objeto (cor de madeira #966F33)
-  GUI::setColor(0.588, 0.439, 0.2, 1, true);
-  model->draw(selected); // Só pinta se não estiver selecionado
+  model->draw(false); // Só pinta se não estiver selecionado
 }
 
 void Barril::desenha()

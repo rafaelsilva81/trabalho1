@@ -31,13 +31,21 @@ void Caneca::criar()
     GUI::drawOrigin(1);
   }
 
+  if (selected)
+  {
+    // Amarelo se estiver selecionado
+    GUI::setColor(1, 1, 0, 1, true);
+  }
+  else
+  {
+    GUI::setColor(0.8, 0.8, 0.8, 1, true);
+  }
+
   glScalef(0.03, 0.03, 0.03);
   glRotatef(-90, 1, 0, 0);
   glTranslatef(0, 1, 0);
 
-  // Cor #cbd5e1
-  GUI::setColor(0.8, 0.8, 0.8, 1, true);
-  model->draw(selected); // Só pinta se não estiver selecionado
+  model->draw(false); // Só pinta se não estiver selecionado
 }
 
 void Caneca::desenha()

@@ -26,6 +26,11 @@ using namespace std;
 #include "Armario.h"
 #include "Microfone.h"
 
+// Cameras
+#include "CameraJogo.h"
+#include "CameraDistante.h"
+#include "Camera.h"
+
 #include "bib/json.hpp"
 
 using json = nlohmann::json;
@@ -44,6 +49,15 @@ bool selecting_state = false;
 
 // Indica se o usuário pediu pra salvar a cena
 bool asked_to_save = false;
+
+// Indica se o usuário esta no modo de transformação
+bool transforming_state = false;
+
+// Indica se o usuário esta no modo de movimentação de luz
+bool moving_light_state = false;
+
+// Indica a camera
+int camera_presets = 0;
 
 void transformObjects()
 {
@@ -78,15 +92,16 @@ int giveId()
 void grid()
 {
   glBegin(GL_LINES);
-  for (float i = -10; i <= 10; i += 1.0)
+  GUI::setColor(0.5, 0.5, 0.5);
+  for (float i = -5; i <= 5; i += 1.0)
   {
     // Draw lines along the x-axis
-    glVertex3f(i, 0, -10);
-    glVertex3f(i, 0, 10);
+    glVertex3f(i, 0, -5);
+    glVertex3f(i, 0, 5);
 
     // Draw lines along the z-axis
-    glVertex3f(-10, 0, i);
-    glVertex3f(10, 0, i);
+    glVertex3f(-5, 0, i);
+    glVertex3f(5, 0, i);
   }
   glEnd();
 }
@@ -183,8 +198,8 @@ void readSave()
 
     Prateleira *prateleira_fundo = new Prateleira(giveId(), -2., 2.2, -4.7, 0., 0., 0., 1., 1., 1., false, false);
     Caneca *caneca_prateleira_fundo_1 = new Caneca(giveId(), -1.5, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
-    /* Caneca *caneca_prateleira_fundo_2 = new Caneca(giveId(), -1.8, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
-    Caneca *caneca_prateleira_fundo_3 = new Caneca(giveId(), -2.2, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false); */
+    Caneca *caneca_prateleira_fundo_2 = new Caneca(giveId(), -1.8, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
+    /* Caneca *caneca_prateleira_fundo_3 = new Caneca(giveId(), -2.2, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false); */
 
     Tamborete *tamborete_balcao_1 = new Tamborete(giveId(), -4.2, 0.0, -1.9, 0., 0., 0., 1., 1., 1., false, false);
     Tamborete *tamborete_balcao_2 = new Tamborete(giveId(), -3, 0.0, -1.9, 0., 0., 0., 1., 1., 1., false, false);
@@ -192,7 +207,7 @@ void readSave()
     Tamborete *tamborete_balcao_4 = new Tamborete(giveId(), -0.6, 0.0, -1.9, 0., 0., 0., 1., 1., 1., false, false);
 
     Caneca *caneca_balcao_1 = new Caneca(giveId(), -4.3, 1, -2.4, 0., 10, 0., 1., 1., 1., false, false);
-    /* Caneca *caneca_balcao_2 = new Caneca(giveId(), -3.3, 1, -2.4, 0., -20, 0., 1., 1., 1., false, false); */
+    Caneca *caneca_balcao_2 = new Caneca(giveId(), -3.3, 1, -2.4, 0., -20, 0., 1., 1., 1., false, false);
     Caneca *caneca_balcao_3 = new Caneca(giveId(), -1.8, 1, -2.4, 0., 30, 0., 1., 1., 1., false, false);
     /* Caneca *caneca_balcao_4 = new Caneca(giveId(), -0.3, 1, -2.4, 0., 45, 0., 1., 1., 1., false, false); */
 
@@ -200,7 +215,7 @@ void readSave()
     Tamborete *tamborete_1_mesa_1 = new Tamborete(giveId(), 2.3, 0.0, 2.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
     Tamborete *tamborete_2_mesa_1 = new Tamborete(giveId(), 3.8, 0.0, 2.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
     Caneca *caneca_1_mesa_1 = new Caneca(giveId(), 3.1, 1, 2.1, 0.0, 90.0, 0.0, 1.0, 1.0, 1.0, false, false);
-    /* Caneca *caneca_2_mesa_1 = new Caneca(giveId(), 2.8, 1, 2, 0.0, -90.0, 0.0, 1.0, 1.0, 1.0, false, false); */
+    Caneca *caneca_2_mesa_1 = new Caneca(giveId(), 2.8, 1, 2, 0.0, -90.0, 0.0, 1.0, 1.0, 1.0, false, false);
 
     Mesa *mesa_2 = new Mesa(giveId(), -3.0, 0.0, 0.5, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
     Tamborete *tamborete_1_mesa_2 = new Tamborete(giveId(), -3.6, 0.0, 0.5, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
@@ -225,7 +240,7 @@ void readSave()
 
     objetos.push_back(prateleira_fundo);
     objetos.push_back(caneca_prateleira_fundo_1);
-    /* objetos.push_back(caneca_prateleira_fundo_2); */
+    objetos.push_back(caneca_prateleira_fundo_2);
     /* objetos.push_back(caneca_prateleira_fundo_3); */
 
     objetos.push_back(tamborete_balcao_1);
@@ -234,7 +249,7 @@ void readSave()
     objetos.push_back(tamborete_balcao_4);
 
     objetos.push_back(caneca_balcao_1);
-    /* objetos.push_back(caneca_balcao_2); */
+    objetos.push_back(caneca_balcao_2);
     objetos.push_back(caneca_balcao_3);
     /* objetos.push_back(caneca_balcao_4); */
 
@@ -242,7 +257,7 @@ void readSave()
     objetos.push_back(tamborete_1_mesa_1);
     objetos.push_back(tamborete_2_mesa_1);
     objetos.push_back(caneca_1_mesa_1);
-    /* objetos.push_back(caneca_2_mesa_1); */
+    objetos.push_back(caneca_2_mesa_1);
 
     objetos.push_back(mesa_2);
     objetos.push_back(tamborete_1_mesa_2);
@@ -258,14 +273,6 @@ void readSave()
 
     objetos.push_back(palco);
     objetos.push_back(microfone);
-    /*     objetos.push_back(mesa);
-        objetos.push_back(balcao);
-        objetos.push_back(prateleira);
-
-        objetos.push_back(tamborete);
-        objetos.push_back(barril);
-        objetos.push_back(caneca);
-        objetos.push_back(armario); */
 
     // @TODO: Re-habilitar isso depois
     // saveScene();
@@ -347,6 +354,14 @@ void readSave()
       {
         objetos.push_back(new Parede(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, false, false));
       }
+      else if (classe == "Palco")
+      {
+        objetos.push_back(new Palco(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, false, false));
+      }
+      else if (classe == "Microfone")
+      {
+        objetos.push_back(new Microfone(id, t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z, false, false));
+      }
 
       // @TODO: Adicionar os novos objetos
     }
@@ -415,9 +430,11 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
   switch (tecla)
   {
   case 't':
+    transforming_state = !transforming_state;
     glutGUI::trans_obj = !glutGUI::trans_obj;
     break;
   case 'l':
+    moving_light_state = !moving_light_state;
     glutGUI::trans_luz = !glutGUI::trans_luz;
     break;
   case '1':
@@ -448,28 +465,133 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
     // Criar armario
     objetos.push_back(new Armario(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
     break;
+  case '8':
+    // Criar palco
+    objetos.push_back(new Palco(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
+    break;
+  case '9':
+    // Criar microfone
+    objetos.push_back(new Microfone(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
+    break;
   case 'd':
-    if (selecting_state) {
+    if (selecting_state)
+    {
       // Deletar objeto
       objetos.erase(objetos.begin() + current_object_id);
 
       // Reduzir index
-      if (objetos.size() == 0) {
+      if (objetos.size() == 0)
+      {
         current_object_id = 0;
         selecting_state = false;
       }
-      
+
       // Volta pro id 1
-      current_object_id = 0
+      current_object_id = 0;
       objetos[current_object_id]->selected = !objetos[current_object_id]->selected;
-      
     }
+    break;
+  case 'x':
+    if (selecting_state)
+    {
+      // Obter o ultimo indice
+      current_object_id = objetos.size() - 1;
+
+      // Deletar objeto
+      objetos.erase(objetos.begin() + current_object_id);
+
+      // Reduzir index
+      if (objetos.size() == 0)
+      {
+        current_object_id = 0;
+        selecting_state = false;
+      }
+
+      // Volta pro id 1
+      current_object_id = 0;
+      objetos[current_object_id]->selected = true;
+    }
+    break;
   case 's':
     // Salvar
     saveScene();
     break;
   case 'c':
-    // TODO: Trocar cameras
+    camera_presets++;
+    /* cout << "Camera Preset: " << camera_presets << endl; */
+    // Presets de camera
+    switch (camera_presets)
+    {
+    case 0:
+      glutGUI::cam->e.x = 0;
+      glutGUI::cam->e.y = 15;
+      glutGUI::cam->e.z = 0;
+      glutGUI::cam->c.x = 0;
+      glutGUI::cam->c.y = 0;
+      glutGUI::cam->c.z = 0;
+      glutGUI::cam->u.x = 1;
+      glutGUI::cam->u.y = 0;
+      glutGUI::cam->u.z = 0;
+      break;
+    case 1:
+      glutGUI::cam->e.x = -10;
+      glutGUI::cam->e.y = 2;
+      glutGUI::cam->e.z = -10;
+      glutGUI::cam->c.x = 0;
+      glutGUI::cam->c.y = 0;
+      glutGUI::cam->c.z = 0;
+      glutGUI::cam->u.x = 0;
+      glutGUI::cam->u.y = 1;
+      glutGUI::cam->u.z = 0;
+      break;
+    case 2:
+      glutGUI::cam->e.x = 10;
+      glutGUI::cam->e.y = 2;
+      glutGUI::cam->e.z = -10;
+      glutGUI::cam->c.x = 0;
+      glutGUI::cam->c.y = 0;
+      glutGUI::cam->c.z = 0;
+      glutGUI::cam->u.x = 0;
+      glutGUI::cam->u.y = 1;
+      glutGUI::cam->u.z = 0;
+      break;
+    case 3:
+      glutGUI::cam->e.x = 10;
+      glutGUI::cam->e.y = 2;
+      glutGUI::cam->e.z = 10;
+      glutGUI::cam->c.x = 0;
+      glutGUI::cam->c.y = 0;
+      glutGUI::cam->c.z = 0;
+      glutGUI::cam->u.x = 0;
+      glutGUI::cam->u.y = 1;
+      glutGUI::cam->u.z = 0;
+      break;
+    case 4:
+      glutGUI::cam->e.x = -10;
+      glutGUI::cam->e.y = 2;
+      glutGUI::cam->e.z = 10;
+      glutGUI::cam->c.x = 0;
+      glutGUI::cam->c.y = 0;
+      glutGUI::cam->c.z = 0;
+      glutGUI::cam->u.x = 0;
+      glutGUI::cam->u.y = 1;
+      glutGUI::cam->u.z = 0;
+      break;
+    case 5:
+      glutGUI::cam->e.x = 0;
+      glutGUI::cam->e.y = 1;
+      glutGUI::cam->e.z = -10;
+      glutGUI::cam->c.x = 0;
+      glutGUI::cam->c.y = 1;
+      glutGUI::cam->c.z = 0;
+      glutGUI::cam->u.x = 0;
+      glutGUI::cam->u.y = 1;
+      glutGUI::cam->u.z = 0;
+      break;
+    default:
+      camera_presets = 0;
+      break;
+    }
     break;
   case 'p':
     // Alterar de modo de seleção
@@ -526,6 +648,7 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
     {
       objetos[current_object_id]->show_coord = !objetos[current_object_id]->show_coord;
     }
+    break;
   default:
     break;
   }
@@ -534,7 +657,6 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
 void montarCena()
 {
 
-  // Cor de fundo
   glClearColor(0.53, 0.81, 0.92, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
 
@@ -542,7 +664,7 @@ void montarCena()
   GUI::setLight(0, 3, 5, 4, true, false);
 
   // Debug do eixo
-  GUI::drawOriginAL(5, 1);
+  /* GUI::drawOriginAL(5, 1); */
   GUI::setColor(0.8, 0.8, 0.8, 1, true);
   // Piso
   GUI::drawFloor(10, 10, 0.5, 0.5);
@@ -578,23 +700,35 @@ void desenha()
 
   grid();
 
-    if (selecting_state)
-    {
-      string s = "SELECIONANDO:" + objetos[current_object_id]->getClassName() + " id" + to_string(current_object_id);
-      // Irá mostrar na tela quando um objeto estiver selecionado
-      drawString(s, 4, 2);
-    }
+  if (asked_to_save)
+  {
+    drawString("SALVO COM SUCESSO!", 4, 75);
+    asked_to_save = false;
+  }
 
-    if (asked_to_save)
-    {
-      drawString("Salvo com sucesso!", 4, 50);
-      asked_to_save = false;
-    }
+  drawString("CAMERA PRESET:" + to_string(camera_presets), 4, 60);
 
-    if (selecting_state && objetos[current_object_id]->show_coord)
-    {
-      drawString("MOSTRANDO COORDENADAS", 4, 20);
-    }
+  if (selecting_state && objetos[current_object_id]->show_coord)
+  {
+    drawString("MOSTRANDO COORDENADAS", 4, 45);
+  }
+
+  if (transforming_state)
+  {
+    drawString("TRANSFORMANDO OBJETO", 4, 30);
+  }
+
+  if (moving_light_state)
+  {
+    drawString("MOVENDO LUZ", 4, 15);
+  }
+
+  if (selecting_state)
+  {
+    string s = "SELECIONANDO:" + objetos[current_object_id]->getClassName() + " id " + to_string(current_object_id);
+    // Irá mostrar na tela quando um objeto estiver selecionado
+    drawString(s, 4, 1);
+  }
 
   transformObjects();
 

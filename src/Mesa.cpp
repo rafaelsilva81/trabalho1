@@ -25,17 +25,20 @@ Mesa::Mesa(int id, float t_x, float t_y, float t_z,
 void Mesa::criar()
 {
 
-  if (selected)
-  {
-    GUI::setColor(1, 1, 1, 1, true); // Pinta de branco ao selecionar
-  }
-
   if (show_coord)
   {
     GUI::drawOrigin(1);
   }
 
-  GUI::setColor(0.5451, 0.2706, 0.0745, 1, true); // Pintura cor da madeira
+  if (selected)
+  {
+    // Amarelo se estiver selecionado
+    GUI::setColor(1, 1, 0, 1, true);
+  }
+  else
+  {
+    GUI::setColor(0.5451, 0.2706, 0.0745, 1, true);
+  }
 
   // Desabilita o culling para que as faces de trás também sejam desenhadas
   glDisable(GL_CULL_FACE);
@@ -75,7 +78,10 @@ void Mesa::criar()
 
   // Tampo da mesa
   // Alterar a cor para #ef4444
-  GUI::setColor(0.9373, 0.2667, 0.2667, 1, true);
+  if (!selected)
+  {
+    GUI::setColor(0.9373, 0.2667, 0.2667, 1, true);
+  }
 
   /* glBegin(GL_POLYGON);
   glNormal3f(0.0, 1.0, 0.0);

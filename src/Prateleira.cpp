@@ -25,18 +25,21 @@ Prateleira::Prateleira(int id, float t_x, float t_y, float t_z,
 void Prateleira::criar()
 {
 
-  if (selected)
-  {
-    GUI::setColor(1, 1, 1, 1, true); // Pinta de branco ao selecionar
-  }
-
   if (show_coord)
   {
     GUI::drawOrigin(1);
   }
 
-  // Pintura do objeto (cor de madeira #966F33)
-  GUI::setColor(0.588, 0.439, 0.2, 1, true);
+  if (selected)
+  {
+    // Amarelo se estiver selecionado
+    GUI::setColor(1, 1, 0, 1, true);
+  }
+  else
+  {
+    // Pintura do objeto (cor de madeira #966F33)
+    GUI::setColor(0.588, 0.439, 0.2, 1, true);
+  }
 
   // Face frontal
   glBegin(GL_POLYGON);

@@ -25,24 +25,30 @@ Palco::Palco(int id, float t_x, float t_y, float t_z,
 void Palco::criar()
 {
 
-  if (selected)
-  {
-    GUI::setColor(1, 1, 1, 1, true); // Pinta de branco ao selecionar
-  }
-
   if (show_coord)
   {
     GUI::drawOrigin(1);
   }
 
-  GUI::setColor(0.5451, 0.2706, 0.0745, 1, true); // Pintura cor da madeira
+  if (selected)
+  {
+    // Amarelo se estiver selecionado
+    GUI::setColor(1, 1, 0, 1, true);
+  }
+  else
+  {
+    GUI::setColor(0.1176, 0.1607, 0.2313, 1, true);
+  }
 
   // Palco
   GUI::drawBox(-1.5, 0, -0.5, 1.5, 1, 1.5);
 
   // Escadinha do palco, na direita do palco na frente
   // Alterar a cor para #ef4444
-  GUI::setColor(0.9373, 0.2667, 0.2667, 1, true);
+  if (!selected)
+  {
+    GUI::setColor(0.9373, 0.2667, 0.2667, 1, true);
+  }
   GUI::drawBox(0, 0, 1.5, 1.5, 1, 2);
   GUI::drawBox(0, 0, 2, 1.5, 0.5, 2.5);
 }
