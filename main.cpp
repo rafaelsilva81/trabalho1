@@ -24,6 +24,7 @@ using namespace std;
 #include "Barril.h"
 #include "Caneca.h"
 #include "Armario.h"
+#include "Microfone.h"
 
 #include "bib/json.hpp"
 
@@ -69,7 +70,7 @@ void transformObjects()
 
 int giveId()
 {
-  cout << "Atribuindo id:" + to_string(max_object_id) << endl;
+  /*  cout << "Atribuindo id:" + to_string(max_object_id) << endl; */
   max_object_id += 1;
   return max_object_id;
 }
@@ -185,10 +186,10 @@ void readSave()
     /* Caneca *caneca_prateleira_fundo_2 = new Caneca(giveId(), -1.8, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
     Caneca *caneca_prateleira_fundo_3 = new Caneca(giveId(), -2.2, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false); */
 
-    Tamborete *tamborete_balcao_1 = new Tamborete(giveId(), -4.2, 0.0, -1.8, 0., 0., 0., 1., 1., 1., false, false);
-    Tamborete *tamborete_balcao_2 = new Tamborete(giveId(), -3, 0.0, -1.8, 0., 0., 0., 1., 1., 1., false, false);
-    Tamborete *tamborete_balcao_3 = new Tamborete(giveId(), -1.8, 0.0, -1.8, 0., 0., 0., 1., 1., 1., false, false);
-    Tamborete *tamborete_balcao_4 = new Tamborete(giveId(), -0.6, 0.0, -1.8, 0., 0., 0., 1., 1., 1., false, false);
+    Tamborete *tamborete_balcao_1 = new Tamborete(giveId(), -4.2, 0.0, -1.9, 0., 0., 0., 1., 1., 1., false, false);
+    Tamborete *tamborete_balcao_2 = new Tamborete(giveId(), -3, 0.0, -1.9, 0., 0., 0., 1., 1., 1., false, false);
+    Tamborete *tamborete_balcao_3 = new Tamborete(giveId(), -1.8, 0.0, -1.9, 0., 0., 0., 1., 1., 1., false, false);
+    Tamborete *tamborete_balcao_4 = new Tamborete(giveId(), -0.6, 0.0, -1.9, 0., 0., 0., 1., 1., 1., false, false);
 
     Caneca *caneca_balcao_1 = new Caneca(giveId(), -4.3, 1, -2.4, 0., 10, 0., 1., 1., 1., false, false);
     /* Caneca *caneca_balcao_2 = new Caneca(giveId(), -3.3, 1, -2.4, 0., -20, 0., 1., 1., 1., false, false); */
@@ -213,9 +214,8 @@ void readSave()
     /*  Caneca *caneca_1_mesa_3 = new Caneca(giveId(), -2.4, 1, 3.3, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false); */
     Caneca *caneca_2_mesa_3 = new Caneca(giveId(), -2.6, 1, 3.6, 0.0, 180.0, 0.0, 1.0, 1.0, 1.0, false, false);
 
-    // Debug
-    Palco *palco = new Palco(giveId(), 0, 2, 0, 0, 0, 0, 1, 1, 1, false, false);
-    objetos.push_back(palco);
+    Palco *palco = new Palco(giveId(), 3.5, 0.0, -4.5, 0.0, 0.0, 0.0, 0.9, 0.9, 0.9, false, false);
+    Microfone *microfone = new Microfone(giveId(), 3, 0.85, -3.8, 0.0, 50.0, 0.0, 0.9, 0.9, 0.9, false, false);
 
     objetos.push_back(balcao);
 
@@ -255,6 +255,9 @@ void readSave()
     objetos.push_back(tamborete_2_mesa_3);
     /* objetos.push_back(caneca_1_mesa_3); */
     objetos.push_back(caneca_2_mesa_3);
+
+    objetos.push_back(palco);
+    objetos.push_back(microfone);
     /*     objetos.push_back(mesa);
         objetos.push_back(balcao);
         objetos.push_back(prateleira);
@@ -555,7 +558,7 @@ void desenha()
 
   montarCena();
 
-  /* grid(); */
+  grid();
 
   /*   if (selecting_state)
     {

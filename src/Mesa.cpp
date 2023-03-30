@@ -74,16 +74,18 @@ void Mesa::criar()
   glEnd();
 
   // Tampo da mesa
-  // cor do tampo será vermelho 237, 29, 36
-  GUI::setColor(237.0 / 255.0, 29.0 / 255.0, 36.0 / 255.0, 1, true);
+  // Alterar a cor para #ef4444
+  GUI::setColor(0.9373, 0.2667, 0.2667, 1, true);
 
-  glBegin(GL_POLYGON);
+  /* glBegin(GL_POLYGON);
   glNormal3f(0.0, 1.0, 0.0);
   glVertex3f(-0.5, 1.0, -0.5);
   glVertex3f(-0.5, 1.0, 0.5);
   glVertex3f(0.5, 1.0, 0.5);
   glVertex3f(0.5, 1.0, -0.5);
   glEnd();
+ */
+  GUI::drawBox(-0.45, 0.95, -0.5, 0.45, 1, 0.5);
 
   // Habilita o culling novamente
   glEnable(GL_CULL_FACE);

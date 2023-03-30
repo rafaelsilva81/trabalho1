@@ -25,8 +25,8 @@ Balcao::Balcao(int id, float t_x, float t_y, float t_z,
 void Balcao::criar()
 {
 
-  // Pintura do objeto (cor de madeira #966F33)
-  GUI::setColor(0.588, 0.439, 0.2, 1, true);
+  // Alterar a cor para #ef4444
+  GUI::setColor(0.9373, 0.2667, 0.2667, 1, true);
 
   if (selected)
   {

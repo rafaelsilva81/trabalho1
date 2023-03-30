@@ -26,7 +26,6 @@ Armario::Armario(int id, float t_x, float t_y, float t_z,
 void Armario::criar()
 {
 
-  Model3DS *model = new Model3DS("./3ds/armario.3DS");
   if (show_coord)
   {
     GUI::drawOrigin(1);

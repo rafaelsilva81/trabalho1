@@ -35,8 +35,9 @@ void Caneca::criar()
   glRotatef(-90, 1, 0, 0);
   glTranslatef(0, 1, 0);
 
-  GUI::setColor(0.5451, 0.2706, 0.0745, 1, true); // Pintura cor da madeira
-  model->draw(selected);                          // Só pinta se não estiver selecionado
+  // Cor #cbd5e1
+  GUI::setColor(0.8, 0.8, 0.8, 1, true);
+  model->draw(selected); // Só pinta se não estiver selecionado
 }
 
 void Caneca::desenha()

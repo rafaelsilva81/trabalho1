@@ -35,13 +35,14 @@ void Palco::criar()
     GUI::drawOrigin(1);
   }
 
-  // Pinutra da cor (#0a0a0a)
-  GUI::setColor(0.0392, 0.0392, 0.0392, 1, true);
+  GUI::setColor(0.5451, 0.2706, 0.0745, 1, true); // Pintura cor da madeira
 
   // Palco
-  GUI::drawBox(-1.5, 0, 0, 1.5, 1, 1.5);
+  GUI::drawBox(-1.5, 0, -0.5, 1.5, 1, 1.5);
 
   // Escadinha do palco, na direita do palco na frente
+  // Alterar a cor para #ef4444
+  GUI::setColor(0.9373, 0.2667, 0.2667, 1, true);
   GUI::drawBox(0, 0, 1.5, 1.5, 1, 2);
   GUI::drawBox(0, 0, 2, 1.5, 0.5, 2.5);
 }
