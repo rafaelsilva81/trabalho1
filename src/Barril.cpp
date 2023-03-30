@@ -30,7 +30,7 @@ void Barril::criar()
     GUI::drawOrigin(1);
   }
 
-  Model3DS *barril = new Model3DS("./3ds/barril.3DS");
+  Model3DS *barril = new Model3DS("../3ds/barril.3DS");
 
   glScalef(0.02, 0.02, 0.02);
   glRotatef(90, 1, 0, 0);

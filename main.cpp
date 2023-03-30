@@ -1,4 +1,8 @@
+
 #include <iostream>
+
+using namespace std;
+
 #include <vector>
 #include <gui.h>
 #include <fstream>
@@ -22,7 +26,6 @@
 
 #include "bib/json.hpp"
 
-using namespace std;
 using json = nlohmann::json;
 
 // Paredes (não serão objetos interativos)

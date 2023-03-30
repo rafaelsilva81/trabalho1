@@ -30,7 +30,7 @@ void Armario::criar()
     GUI::drawOrigin(1);
   }
 
-  Model3DS *armario = new Model3DS("./3ds/armario.3DS");
+  Model3DS *armario = new Model3DS("../3ds/armario.3DS");
 
   glScalef(0.02, 0.02, 0.02);
   glRotatef(1, 180, 0, 0);

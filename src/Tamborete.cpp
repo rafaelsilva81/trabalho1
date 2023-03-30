@@ -30,7 +30,7 @@ void Tamborete::criar()
     GUI::drawOrigin(1);
   }
 
-  Model3DS *tamborete = new Model3DS("./3ds/tamborete.3DS");
+  Model3DS *tamborete = new Model3DS("../3ds/tamborete.3DS");
 
   glScalef(0.003, 0.003, 0.003);
   glRotatef(-90, 1, 0, 0);

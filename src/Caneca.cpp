@@ -30,7 +30,7 @@ void Caneca::criar()
     GUI::drawOrigin(1);
   }
 
-  Model3DS *caneca = new Model3DS("./3ds/caneca.3DS");
+  Model3DS *caneca = new Model3DS("../3ds/caneca.3DS");
 
   glScalef(0.03, 0.03, 0.03);
   glRotatef(-90, 1, 0, 0);
