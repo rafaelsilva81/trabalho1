@@ -20,24 +20,24 @@ Armario::Armario(int id, float t_x, float t_y, float t_z,
   scale_z = s_z;
   selected = sel;
   show_coord = coord;
+  model = new Model3DS("./3ds/armario.3DS");
 }
 
 void Armario::criar()
 {
 
+  Model3DS *model = new Model3DS("./3ds/armario.3DS");
   if (show_coord)
   {
     GUI::drawOrigin(1);
   }
-
-  Model3DS *armario = new Model3DS("../3ds/armario.3DS");
 
   glScalef(0.02, 0.02, 0.02);
   glRotatef(1, 180, 0, 0);
   glTranslatef(0, 1, 0);
 
   GUI::setColor(0.5451, 0.2706, 0.0745, 1, true); // Pintura cor da madeira
-  armario->draw(selected);                        // Só pinta se não estiver selecionado
+  model->draw(selected);                          // Só pinta se não estiver selecionado
 }
 
 void Armario::desenha()

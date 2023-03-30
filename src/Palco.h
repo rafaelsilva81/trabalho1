@@ -1,17 +1,14 @@
-#ifndef ARMARIO_H
-#define ARMARIO_H
+#ifndef PALCO_H
+#define PALCO_H
 
 #include <Objeto.h>
 
 using namespace std;
 
-class Armario : public Objeto
+class Palco : public Objeto
 {
 public:
-  Model3DS *model;
-
-public:
-  Armario(
+  Palco(
       int id,
       float t_x, float t_y, float t_z,
       float r_x, float r_y, float r_z,
@@ -22,4 +19,4 @@ public:
   std::string getClassName();
 };
 
-#endif // ARMARIO_H
+#endif // PALCO_H

@@ -8,6 +8,9 @@ using namespace std;
 class Caneca : public Objeto
 {
 public:
+  Model3DS *model;
+
+public:
   Caneca(
       int id,
       float t_x, float t_y, float t_z,

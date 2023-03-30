@@ -2,7 +2,7 @@
 
 Model3DS::Model3DS(const char *name)
 {
-  std::cout << name << std::endl;
+  /* std::cout << name << std::endl; */
   file = lib3ds_file_load(name);
 
   if (!file)

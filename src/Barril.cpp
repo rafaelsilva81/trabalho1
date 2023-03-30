@@ -20,6 +20,7 @@ Barril::Barril(int id, float t_x, float t_y, float t_z,
   scale_z = s_z;
   selected = sel;
   show_coord = coord;
+  model = new Model3DS("./3ds/barril.3DS");
 }
 
 void Barril::criar()
@@ -30,15 +31,13 @@ void Barril::criar()
     GUI::drawOrigin(1);
   }
 
-  Model3DS *barril = new Model3DS("../3ds/barril.3DS");
-
   glScalef(0.02, 0.02, 0.02);
   glRotatef(90, 1, 0, 0);
   glTranslatef(0, 0, -43);
 
   // Pintura do objeto (cor de madeira #966F33)
   GUI::setColor(0.588, 0.439, 0.2, 1, true);
-  barril->draw(selected); // Só pinta se não estiver selecionado
+  model->draw(selected); // Só pinta se não estiver selecionado
 }
 
 void Barril::desenha()

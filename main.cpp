@@ -16,6 +16,7 @@ using namespace std;
 #include "Balcao.h"
 #include "Mesa.h"
 #include "Prateleira.h"
+#include "Palco.h"
 #include "Parede.h" // Não iterativo
 
 // Objetos importados do .3DS
@@ -176,8 +177,8 @@ void readSave()
     Balcao *balcao = new Balcao(giveId(), -2.0, 0.0, -2.5, 0., 360., 0., 1., 1., 1., false, false);
 
     Armario *armario_fundo = new Armario(giveId(), -4.0, 0.0, -4.5, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false);
-    /*   Barril *barril_armario_fundo_1 = new Barril(giveId(), -4.0, 0.1, -4.5, 0., 0., 0., 1., 1., 1., false, false);
-      Barril *barril_armario_fundo_2 = new Barril(giveId(), -4.0, 1.5, -4.5, 0., 0., 0., 1., 1., 1., false, false); */
+    Barril *barril_armario_fundo_1 = new Barril(giveId(), -4.0, 0.1, -4.5, 0., 0., 0., 1., 1., 1., false, false);
+    Barril *barril_armario_fundo_2 = new Barril(giveId(), -4.0, 1.5, -4.5, 0., 0., 0., 1., 1., 1., false, false);
 
     Prateleira *prateleira_fundo = new Prateleira(giveId(), -2., 2.2, -4.7, 0., 0., 0., 1., 1., 1., false, false);
     Caneca *caneca_prateleira_fundo_1 = new Caneca(giveId(), -1.5, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
@@ -212,11 +213,15 @@ void readSave()
     /*  Caneca *caneca_1_mesa_3 = new Caneca(giveId(), -2.4, 1, 3.3, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false); */
     Caneca *caneca_2_mesa_3 = new Caneca(giveId(), -2.6, 1, 3.6, 0.0, 180.0, 0.0, 1.0, 1.0, 1.0, false, false);
 
+    // Debug
+    Palco *palco = new Palco(giveId(), 0, 2, 0, 0, 0, 0, 1, 1, 1, false, false);
+    objetos.push_back(palco);
+
     objetos.push_back(balcao);
 
     objetos.push_back(armario_fundo);
-    /*   objetos.push_back(barril_armario_fundo_1);
-      objetos.push_back(barril_armario_fundo_2); */
+    objetos.push_back(barril_armario_fundo_1);
+    objetos.push_back(barril_armario_fundo_2);
 
     objetos.push_back(prateleira_fundo);
     objetos.push_back(caneca_prateleira_fundo_1);
