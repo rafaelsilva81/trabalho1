@@ -40,10 +40,10 @@ void Mesa::criar()
     GUI::setColor(0.5451, 0.2706, 0.0745, 1, true);
   }
 
-  // Desabilita o culling para que as faces de trás também sejam desenhadas
   glDisable(GL_CULL_FACE);
 
   // Perna da mesa
+
   glBegin(GL_POLYGON);
   glNormal3f(0.0, 0.0, -1.0);
   glVertex3f(-0.05, 0.0, -0.05);
@@ -83,17 +83,56 @@ void Mesa::criar()
     GUI::setColor(0.9373, 0.2667, 0.2667, 1, true);
   }
 
-  /* glBegin(GL_POLYGON);
-  glNormal3f(0.0, 1.0, 0.0);
-  glVertex3f(-0.5, 1.0, -0.5);
-  glVertex3f(-0.5, 1.0, 0.5);
-  glVertex3f(0.5, 1.0, 0.5);
-  glVertex3f(0.5, 1.0, -0.5);
-  glEnd();
- */
-  GUI::drawBox(-0.45, 0.95, -0.5, 0.45, 1, 0.5);
+  // Faces do tampo da mesa
 
-  // Habilita o culling novamente
+  glBegin(GL_POLYGON);
+  glNormal3f(0.0, 1.0, 0.0);
+  glVertex3f(-0.45, 1.0, -0.5);
+  glVertex3f(-0.45, 1.0, 0.5);
+  glVertex3f(0.45, 1.0, 0.5);
+  glVertex3f(0.45, 1.0, -0.5);
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glNormal3f(0.0, -1.0, 0.0);
+  glVertex3f(-0.45, 0.95, -0.5);
+  glVertex3f(-0.45, 0.95, 0.5);
+  glVertex3f(0.45, 0.95, 0.5);
+  glVertex3f(0.45, 0.95, -0.5);
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glNormal3f(0.0, 0.0, -1.0);
+  glVertex3f(-0.45, 0.95, -0.5);
+  glVertex3f(-0.45, 1.0, -0.5);
+  glVertex3f(0.45, 1.0, -0.5);
+  glVertex3f(0.45, 0.95, -0.5);
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glNormal3f(0.0, 0.0, 1.0);
+  glVertex3f(-0.45, 0.95, 0.5);
+  glVertex3f(-0.45, 1.0, 0.5);
+  glVertex3f(0.45, 1.0, 0.5);
+  glVertex3f(0.45, 0.95, 0.5);
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glNormal3f(-1.0, 0.0, 0.0);
+  glVertex3f(-0.45, 0.95, -0.5);
+  glVertex3f(-0.45, 1.0, -0.5);
+  glVertex3f(-0.45, 1.0, 0.5);
+  glVertex3f(-0.45, 0.95, 0.5);
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glNormal3f(1.0, 0.0, 0.0);
+  glVertex3f(0.45, 0.95, -0.5);
+  glVertex3f(0.45, 1.0, -0.5);
+  glVertex3f(0.45, 1.0, 0.5);
+  glVertex3f(0.45, 0.95, 0.5);
+  glEnd();
+
   glEnable(GL_CULL_FACE);
 }
 

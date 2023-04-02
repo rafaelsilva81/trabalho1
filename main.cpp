@@ -59,6 +59,8 @@ bool moving_light_state = false;
 // Indica a camera
 int camera_presets = 0;
 
+std::ofstream myfile;
+
 void transformObjects()
 {
   // Aplicando transformações no objeto selecionado
@@ -423,6 +425,33 @@ void drawString(std::string str, int x, int y)
   */
 }
 
+void writeCamDebug()
+{
+  std::ofstream camPos;
+
+  // Limpa o arquivo caso ele já exista
+  camPos.open("camera.txt", std::ofstream::out | std::ofstream::trunc);
+
+  if (camPos.is_open())
+  {
+    camPos << "glutGUI::cam->e.x=" << glutGUI::cam->e.x << ";" << endl;
+    camPos << "glutGUI::cam->e.y=" << glutGUI::cam->e.y << ";" << endl;
+    camPos << "glutGUI::cam->e.z=" << glutGUI::cam->e.z << ";" << endl;
+    camPos << "glutGUI::cam->c.x=" << glutGUI::cam->c.x << ";" << endl;
+    camPos << "glutGUI::cam->c.y=" << glutGUI::cam->c.y << ";" << endl;
+    camPos << "glutGUI::cam->c.z=" << glutGUI::cam->c.z << ";" << endl;
+    camPos << "glutGUI::cam->u.x=" << glutGUI::cam->u.x << ";" << endl;
+    camPos << "glutGUI::cam->u.y=" << glutGUI::cam->u.y << ";" << endl;
+    camPos << "glutGUI::cam->u.z=" << glutGUI::cam->u.z << ";" << endl;
+    camPos.close(); // close the file
+    std::cout << "Camera salva" << std::endl;
+  }
+  else
+  {
+    std::cout << "Erro ao abrir arquivo" << std::endl;
+  }
+}
+
 void teclado(unsigned char tecla, int mouseX, int mouseY)
 {
   GUI::keyInit(tecla, mouseX, mouseY);
@@ -523,70 +552,79 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
     switch (camera_presets)
     {
     case 0:
-      glutGUI::cam->e.x = 0;
-      glutGUI::cam->e.y = 15;
-      glutGUI::cam->e.z = 0;
-      glutGUI::cam->c.x = 0;
-      glutGUI::cam->c.y = 0;
-      glutGUI::cam->c.z = 0;
-      glutGUI::cam->u.x = 1;
-      glutGUI::cam->u.y = 0;
-      glutGUI::cam->u.z = 0;
+      // Camera inicial
       break;
     case 1:
-      glutGUI::cam->e.x = -10;
-      glutGUI::cam->e.y = 2;
-      glutGUI::cam->e.z = -10;
-      glutGUI::cam->c.x = 0;
-      glutGUI::cam->c.y = 0;
-      glutGUI::cam->c.z = 0;
-      glutGUI::cam->u.x = 0;
-      glutGUI::cam->u.y = 1;
-      glutGUI::cam->u.z = 0;
+      // Camera atrás do balcão
+      glutGUI::cam->e.x = -0.41189;
+      glutGUI::cam->e.y = 1.90996;
+      glutGUI::cam->e.z = -4.75755;
+      glutGUI::cam->c.x = -0.538113;
+      glutGUI::cam->c.y = 1.69438;
+      glutGUI::cam->c.z = -3.43081;
+      glutGUI::cam->u.x = -0.0151239;
+      glutGUI::cam->u.y = 0.987168;
+      glutGUI::cam->u.z = 0.158969;
       break;
     case 2:
-      glutGUI::cam->e.x = 10;
-      glutGUI::cam->e.y = 2;
-      glutGUI::cam->e.z = -10;
-      glutGUI::cam->c.x = 0;
-      glutGUI::cam->c.y = 0;
-      glutGUI::cam->c.z = 0;
-      glutGUI::cam->u.x = 0;
-      glutGUI::cam->u.y = 1;
-      glutGUI::cam->u.z = 0;
+      // Camera no palco (microfone)
+      glutGUI::cam->e.x = 4.23509;
+      glutGUI::cam->e.y = 3.01768;
+      glutGUI::cam->e.z = -5.59856;
+      glutGUI::cam->c.x = 3.59793;
+      glutGUI::cam->c.y = 2.53757;
+      glutGUI::cam->c.z = -4.15427;
+      glutGUI::cam->u.x = -0.117445;
+      glutGUI::cam->u.y = 0.956731;
+      glutGUI::cam->u.z = 0.266218;
       break;
     case 3:
-      glutGUI::cam->e.x = 10;
-      glutGUI::cam->e.y = 2;
-      glutGUI::cam->e.z = 10;
-      glutGUI::cam->c.x = 0;
-      glutGUI::cam->c.y = 0;
-      glutGUI::cam->c.z = 0;
-      glutGUI::cam->u.x = 0;
-      glutGUI::cam->u.y = 1;
-      glutGUI::cam->u.z = 0;
+      // Camera na mesa 3 (olhando pro palco)
+      glutGUI::cam->e.x = -2.90641;
+      glutGUI::cam->e.y = 1.44431;
+      glutGUI::cam->e.z = 5.22523;
+      glutGUI::cam->c.x = -0.643892;
+      glutGUI::cam->c.y = 1.00152;
+      glutGUI::cam->c.z = 0.176711;
+      glutGUI::cam->u.x = 0.0326277;
+      glutGUI::cam->u.y = 0.996812;
+      glutGUI::cam->u.z = -0.0728044;
       break;
     case 4:
-      glutGUI::cam->e.x = -10;
-      glutGUI::cam->e.y = 2;
-      glutGUI::cam->e.z = 10;
-      glutGUI::cam->c.x = 0;
-      glutGUI::cam->c.y = 0;
-      glutGUI::cam->c.z = 0;
-      glutGUI::cam->u.x = 0;
-      glutGUI::cam->u.y = 1;
-      glutGUI::cam->u.z = 0;
+      // Visão completa zoom out
+      glutGUI::cam->e.x = 11.571;
+      glutGUI::cam->e.y = 12.1003;
+      glutGUI::cam->e.z = 17.1499;
+      glutGUI::cam->c.x = -0.0428676;
+      glutGUI::cam->c.y = 1.51427;
+      glutGUI::cam->c.z = -0.457272;
+      glutGUI::cam->u.x = -0.246984;
+      glutGUI::cam->u.y = 0.893753;
+      glutGUI::cam->u.z = -0.374439;
       break;
     case 5:
-      glutGUI::cam->e.x = 0;
-      glutGUI::cam->e.y = 1;
-      glutGUI::cam->e.z = -10;
-      glutGUI::cam->c.x = 0;
-      glutGUI::cam->c.y = 1;
-      glutGUI::cam->c.z = 0;
-      glutGUI::cam->u.x = 0;
-      glutGUI::cam->u.y = 1;
-      glutGUI::cam->u.z = 0;
+      // Visão da mesa pro balcao
+      glutGUI::cam->e.x = 4.53564;
+      glutGUI::cam->e.y = 1.44621;
+      glutGUI::cam->e.z = 2.13429;
+      glutGUI::cam->c.x = 4.03444;
+      glutGUI::cam->c.y = 1.39042;
+      glutGUI::cam->c.z = 1.9932;
+      glutGUI::cam->u.x = -0.102546;
+      glutGUI::cam->u.y = 0.994309;
+      glutGUI::cam->u.z = -0.0288652;
+      break;
+    case 6:
+      // visão do balcao para o palco
+      glutGUI::cam->e.x = -3.15839;
+      glutGUI::cam->e.y = 1.27592;
+      glutGUI::cam->e.z = -1.77695;
+      glutGUI::cam->c.x = -3.06728;
+      glutGUI::cam->c.y = 1.27951;
+      glutGUI::cam->c.z = -1.81818;
+      glutGUI::cam->u.x = -0.0326523;
+      glutGUI::cam->u.y = 0.999358;
+      glutGUI::cam->u.z = 0.0147753;
       break;
     default:
       camera_presets = 0;
@@ -649,6 +687,11 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
       objetos[current_object_id]->show_coord = !objetos[current_object_id]->show_coord;
     }
     break;
+  case '-':
+    // escrever num arquivo a posição da camera atual (para debug)
+    // arquivo camera.txt
+    writeCamDebug();
+    break;
   default:
     break;
   }
@@ -664,7 +707,7 @@ void montarCena()
   GUI::setLight(0, 3, 5, 4, true, false);
 
   // Debug do eixo
-  /* GUI::drawOriginAL(5, 1); */
+  GUI::drawOriginAL(5, 1);
   GUI::setColor(0.8, 0.8, 0.8, 1, true);
   // Piso
   GUI::drawFloor(10, 10, 0.5, 0.5);
