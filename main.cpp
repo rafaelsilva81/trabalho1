@@ -507,6 +507,10 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
     // Criar microfone
     objetos.push_back(new Microfone(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
     break;
+  case '[':
+    // Criar cobertura
+    objetos.push_back(new Cobertura(giveId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, false, false));
+    break;
   case 'd':
     if (selecting_state)
     {
@@ -805,12 +809,13 @@ int main(int argc, char *argv[])
   cout << "7: Adicionar armario" << endl;
   cout << "8: Adicionar palco" << endl;
   cout << "9: Adicionar microfone" << endl; 
-  cout << "0: Adicionar cobertura" << endl; //TODO: this
+  cout << "[: Adicionar cobertura" << endl; //TODO: this
   cout << "c: Alternar camera" << endl;
   cout << "s: Salvar cena" << endl;
   cout << "t: Transformar objeto" << endl;
   cout << "l: Mover luz" << endl;
-   
+  cout << "d: Remover objeto selecionado" << endl;
+  cout << "x: Remover ultimo objeto" << endl;
 
 }
 
