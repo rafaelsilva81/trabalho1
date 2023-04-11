@@ -26,6 +26,9 @@ using namespace std;
 #include "Armario.h"
 #include "Microfone.h"
 
+// Objetos inclinados
+#include "Cobertura.h"
+
 // Cameras
 #include "CameraJogo.h"
 #include "CameraDistante.h"
@@ -199,6 +202,7 @@ void readSave()
     Barril *barril_armario_fundo_2 = new Barril(giveId(), -4.0, 1.5, -4.5, 0., 0., 0., 1., 1., 1., false, false);
 
     Prateleira *prateleira_fundo = new Prateleira(giveId(), -2., 2.2, -4.7, 0., 0., 0., 1., 1., 1., false, false);
+    Cobertura *cobertura_prateleira_fundo = new Cobertura(giveId(), -2., 1.85, -5, 0., 0., 0., 1., 1., 1., false, false);
     Caneca *caneca_prateleira_fundo_1 = new Caneca(giveId(), -1.5, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
     Caneca *caneca_prateleira_fundo_2 = new Caneca(giveId(), -1.8, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false);
     /* Caneca *caneca_prateleira_fundo_3 = new Caneca(giveId(), -2.2, 2.4, -4.7, 0., 180., 0., 1., 1., 1., false, false); */
@@ -241,6 +245,7 @@ void readSave()
     objetos.push_back(barril_armario_fundo_2);
 
     objetos.push_back(prateleira_fundo);
+    objetos.push_back(cobertura_prateleira_fundo);
     objetos.push_back(caneca_prateleira_fundo_1);
     objetos.push_back(caneca_prateleira_fundo_2);
     /* objetos.push_back(caneca_prateleira_fundo_3); */
@@ -632,10 +637,11 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
     }
     break;
   case 'p':
+    // Voltar pro preset inicial
+    current_object_id = 0;
     // Alterar de modo de seleção
     selecting_state = !selecting_state;
     // Volta pro id 1
-    current_object_id = 0;
     objetos[current_object_id]->selected = !objetos[current_object_id]->selected;
     break;
   case 'n':
