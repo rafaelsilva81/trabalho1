@@ -641,12 +641,16 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
     }
     break;
   case 'p':
-    // Voltar pro preset inicial
-    current_object_id = 0;
-    // Alterar de modo de seleção
+    objetos[current_object_id]->selected = false;
+    // Alterar o modo de seleção
     selecting_state = !selecting_state;
-    // Volta pro id 1
-    objetos[current_object_id]->selected = !objetos[current_object_id]->selected;
+
+    // Atualizar o objeto selecionado
+    current_object_id = 0;
+    if (selecting_state)
+    {
+      objetos[current_object_id]->selected = true;
+    }
     break;
   case 'n':
     // Vai pro proximo objeto
@@ -808,15 +812,14 @@ int main(int argc, char *argv[])
   cout << "6: Adicionar canera" << endl;
   cout << "7: Adicionar armario" << endl;
   cout << "8: Adicionar palco" << endl;
-  cout << "9: Adicionar microfone" << endl; 
-  cout << "[: Adicionar cobertura" << endl; //TODO: this
+  cout << "9: Adicionar microfone" << endl;
+  cout << "[: Adicionar cobertura" << endl; // TODO: this
   cout << "c: Alternar camera" << endl;
   cout << "s: Salvar cena" << endl;
   cout << "t: Transformar objeto" << endl;
   cout << "l: Mover luz" << endl;
   cout << "d: Remover objeto selecionado" << endl;
   cout << "x: Remover ultimo objeto" << endl;
-
 }
 
 /*

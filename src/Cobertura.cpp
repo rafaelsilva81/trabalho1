@@ -44,37 +44,12 @@ void Cobertura::criar()
 
   // Losango
   glBegin(GL_POLYGON);
-  glNormal3f(0.96, 0.24, 0.24);
+  glNormal3f(0, 1, 1);
   glVertex3f(-0.8, 1, 0.8);
   glVertex3f(0.8, 1, 0.8);
   glVertex3f(0.8, 1.3, 0);
   glVertex3f(-0.8, 1.3, 0);
   glEnd();
-
-  /*  // Triangulo Trás
-   glBegin(GL_POLYGON);
-   glNormal3f(0, 1, 0);
-   glVertex3f(0.5, 1, -0.5);
-   glVertex3f(-0.5, 1, -0.5);
-   glVertex3f(-0.5, 1.5, 0);
-   glVertex3f(0.5, 1.5, 0);
-   glEnd();
-
-   // Triangulo Direita
-   glBegin(GL_POLYGON);
-   glNormal3f(0.707, 0.707, 0);
-   glVertex3f(0.5, 1, 0.5);
-   glVertex3f(0.5, 1, -0.5);
-   glVertex3f(-0.5, 1.5, 0);
-   glEnd();
-
-   // Triangulo Esquerda
-   glBegin(GL_POLYGON);
-   glNormal3f(-0.707, 0.707, 0);
-   glVertex3f(-0.5, 1, -0.5);
-   glVertex3f(-0.5, 1, 0.5);
-   glVertex3f(-0.5, 1.5, 0);
-   glEnd(); */
 
   glEnable(GL_CULL_FACE);
 }
