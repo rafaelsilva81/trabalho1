@@ -44,7 +44,7 @@ void Cobertura::criar()
 
   // Losango
   glBegin(GL_POLYGON);
-  glNormal3f(0, 1, 1);
+  glNormal3f(1, 1, 0);
   glVertex3f(-0.8, 1, 0.8);
   glVertex3f(0.8, 1, 0.8);
   glVertex3f(0.8, 1.3, 0);

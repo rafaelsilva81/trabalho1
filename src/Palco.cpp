@@ -40,17 +40,99 @@ void Palco::criar()
     GUI::setColor(0.1176, 0.1607, 0.2313, 1, true);
   }
 
-  // Palco
-  GUI::drawBox(-1.5, 0, -0.5, 1.5, 1, 1.5);
+  /*   // Palco
+    GUI::drawBox(-1.5, 0, -0.5, 1.5, 1, 1.5);
+   */
 
-  // Escadinha do palco, na direita do palco na frente
+  // Palco
+  // Face frontal
+  glBegin(GL_POLYGON);
+  glNormal3f(0.0, 0.0, 1.5);
+  glVertex3f(-1.5, 0, 1.5);
+  glVertex3f(1.5, 0, 1.5);
+  glVertex3f(1.5, 1, 1.5);
+  glVertex3f(-1.5, 1, 1.5);
+  glEnd();
+
+  // Face traseira
+  glBegin(GL_POLYGON);
+  glNormal3f(0.0, 0.0, -0.5);
+  glVertex3f(-1.5, 0, -0.5);
+  glVertex3f(-1.5, 1, -0.5);
+  glVertex3f(1.5, 1, -0.5);
+  glVertex3f(1.5, 0, -0.5);
+  glEnd();
+
+  // Face direita
+  glBegin(GL_POLYGON);
+  glNormal3f(1.0, 0.0, 0.0);
+  glVertex3f(-1.5, 0, -0.5);
+  glVertex3f(-1.5, 0, 1.5);
+  glVertex3f(-1.5, 1, 1.5);
+  glVertex3f(-1.5, 1, -0.5);
+  glEnd();
+
+  // Face esquerda
+  glBegin(GL_POLYGON);
+  glNormal3f(-1.0, 0.0, 0.0);
+  glVertex3f(1.5, 0, -0.5);
+  glVertex3f(1.5, 1, -0.5);
+  glVertex3f(1.5, 1, 1.5);
+  glVertex3f(1.5, 0, 1.5);
+  glEnd();
+
+  // Face inferior
+  glBegin(GL_POLYGON);
+  glNormal3f(0.0, 0, 0.0);
+  glVertex3f(-1.5, 0, -0.5);
+  glVertex3f(1.5, 0, -0.5);
+  glVertex3f(1.5, 0, 1.5);
+  glVertex3f(-1.5, 0, 1.5);
+  glEnd();
+
+  // Face superior
+  glBegin(GL_POLYGON);
+  glNormal3f(0.0, 1.0, 0.0);
+  glVertex3f(-1.5, 1, -0.5);
+  glVertex3f(-1.5, 1, 1.5);
+  glVertex3f(1.5, 1, 1.5);
+  glVertex3f(1.5, 1, -0.5);
+  glEnd();
+
+  // Rampa do palco (objeto inclinado)
   // Alterar a cor para #ef4444
   if (!selected)
   {
     GUI::setColor(0.9373, 0.2667, 0.2667, 1, true);
   }
-  GUI::drawBox(0, 0, 1.5, 1.5, 1, 2);
-  GUI::drawBox(0, 0, 2, 1.5, 0.5, 2.5);
+
+  // Rampa
+  glBegin(GL_POLYGON);
+  glNormal3f(1, 1, 0);
+  glVertex3f(-0.5, 0, 3);
+  glVertex3f(1.5, 0, 3);
+  glVertex3f(1.5, 1, 1.5);
+  glVertex3f(-0.5, 1, 1.5);
+  glEnd();
+
+  // Lateral esquerda
+  glBegin(GL_POLYGON);
+  glNormal3f(1, 0, 0);
+  glVertex3f(-0.5, 1, 1.5);
+  glVertex3f(-0.5, 0, 1.5);
+  glVertex3f(-0.5, 0, 3);
+  glEnd();
+
+  // Lateral direita
+  glBegin(GL_POLYGON);
+  glNormal3f(1, 0, 0);
+  glVertex3f(1.5, 1, 1.5);
+  glVertex3f(1.5, 0, 3);
+  glVertex3f(1.5, 0, 1.5);
+  glEnd();
+
+  /*   GUI::drawBox(0, 0, 1.5, 1.5, 1, 2);
+    GUI::drawBox(0, 0, 2, 1.5, 0.5, 2.5); */
 }
 
 void Palco::desenha()

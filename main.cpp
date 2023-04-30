@@ -821,11 +821,3 @@ int main(int argc, char *argv[])
   cout << "d: Remover objeto selecionado" << endl;
   cout << "x: Remover ultimo objeto" << endl;
 }
-
-/*
-  1. Mesa
-  2. Balcao
-  3. Cadeira (importado)
-  4. Garçom? (importado)
-  5. Prato (importado)
-*/
