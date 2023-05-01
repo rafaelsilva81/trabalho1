@@ -381,53 +381,54 @@ void drawString(std::string str, int x, int y)
 {
 
   /*
-    Configura a matriz para o modo de "projection"
-    Em seguida, cria um novo "stack" para a matriz de projection
-    e carrega a matriz identidade
-    cria uma projeção ortogonal 2D que sera como uma "TELA 2D" por cima da tela 3D
+    No OpenGL, existem dois modos de exibição principais: o modo de projeção e o modo de modelagem.
+
+    No caso da função em questão, estamos definindo o modo de projeção para desenhar um texto em uma
+    janela bidimensional usando a função gluOrtho2D(),
+    que define um sistema de coordenadas bidimensional de 800x600.
+
+    Em seguida, o texto é desenhado na tela usando as funções do GLUT glutBitmapCharacter() e glRasterPos2i()
+
   */
-  glMatrixMode(GL_PROJECTION); // Configura modo "projecao"
+  // Define o modo de projeção para desenhar o texto na tela
+  glMatrixMode(GL_PROJECTION);
+
+  // Salva a matriz atual na pilha de matrizes OpenGL
   glPushMatrix();
+
+  // Define a matriz de projeção como uma matriz de identidade para garantir que não haja transformações aplicadas a ela
   glLoadIdentity();
+
+  // Define o sistema de coordenadas bidimensional com o canto inferior esquerdo em (0,0) e o canto superior direito em (800,600)
   gluOrtho2D(0, 800, 0, 600);
 
-  /*
-    Configura a matriz para o modo de "model_view"
-    Em seguida, cria um novo "stack" para a matriz de model_view
-    e carrega a matriz identidade
-   */
+  // Define o modo de modelagem para desenhar o texto na tela
   glMatrixMode(GL_MODELVIEW);
+
+  // Salva a matriz atual na pilha de matrizes OpenGL
   glPushMatrix();
+
+  // Define a matriz de modelagem como uma matriz de identidade para garantir que não haja transformações aplicadas a ela
   glLoadIdentity();
 
-  // Define onde o texto será desenhado (no espaço 2D)
+  // Define a posição do ponto onde o texto será desenhado com as coordenadas (x,y)
   glRasterPos2i(x, y);
 
-  // Loop pela palavra
+  // Percorre cada caractere da string e desenha na posição atual do raster utilizando uma fonte 9x15 pixels
   for (char c : str)
-    glutBitmapCharacter(GLUT_BITMAP_9_BY_15, c); // Função do GLUT para desenhar um caracter
+    glutBitmapCharacter(GLUT_BITMAP_9_BY_15, c);
 
-  /*
-    Restaura a matriz de model_view para o modo anterior
-   */
+  // Restaura a matriz de modelagem anteriormente salva na pilha de matrizes OpenGL
+  glPopMatrix();
+
+  // Define o modo de modelagem para desenhar outros objetos na cena
   glMatrixMode(GL_MODELVIEW);
+
+  // Restaura a matriz de projeção anteriormente salva na pilha de matrizes OpenGL
   glPopMatrix();
 
-  /*
-    Restaura a matriz de projection para o modo anterior
-   */
+  // Define o modo de projeção para desenhar outros objetos na cena
   glMatrixMode(GL_PROJECTION);
-  glPopMatrix();
-
-  /*
-    **** ESTRUTURA:
-    [PROJECTION] -> Configura a matriz para o modo de "projection"
-      [ORHTO2D] -> Cria uma tela 2D
-      [MODELVIEW] -> Configura a matriz para o modo de "model_view"
-        [RASTER] -> Desenha o texto sobre a camada MODELVIEW que está dentro do ORTHO2D
-      [MODELVIEW] -> Restaura a matriz de model_view para o modo anterior
-    [PROJECTION] -> Restaura a matriz de projection para o modo anterior
-  */
 }
 
 void writeCamDebug()
