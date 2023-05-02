@@ -555,6 +555,11 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
     // Salvar
     saveScene();
     break;
+  case '=':
+    // Remover arquivo de save
+    // TODO:this
+    cout << "apaguei save" << endl;
+    break;
   case 'c':
     camera_presets++;
     /* cout << "Camera Preset: " << camera_presets << endl; */
@@ -796,10 +801,6 @@ void desenha()
 int main(int argc, char *argv[])
 {
 
-  readSave();
-  // GUI gui(800,600); // (largura, altura)
-  GUI gui = GUI(800, 600, desenha, teclado);
-
   cout << "CONFIGURAÇÃO DE TECLAS" << endl;
   cout << "p: Selecionar objeto" << endl;
   cout << "n: Selecionar próximo objeto" << endl;
@@ -814,11 +815,18 @@ int main(int argc, char *argv[])
   cout << "7: Adicionar armario" << endl;
   cout << "8: Adicionar palco" << endl;
   cout << "9: Adicionar microfone" << endl;
-  cout << "[: Adicionar cobertura" << endl; // TODO: this
+  cout << "[: Adicionar cobertura" << endl;
   cout << "c: Alternar camera" << endl;
   cout << "s: Salvar cena" << endl;
   cout << "t: Transformar objeto" << endl;
   cout << "l: Mover luz" << endl;
   cout << "d: Remover objeto selecionado" << endl;
   cout << "x: Remover ultimo objeto" << endl;
+  cout << "=: Remover arquivo de save" << endl; //TODO: this
+  cout << "q: Fechar" << endl;
+
+
+  readSave();
+  // GUI gui(800,600); // (largura, altura)
+  GUI gui = GUI(800, 600, desenha, teclado);
 }
