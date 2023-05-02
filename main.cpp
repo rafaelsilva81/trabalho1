@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <thread>
 
 using namespace std;
 
@@ -822,11 +823,13 @@ int main(int argc, char *argv[])
   cout << "l: Mover luz" << endl;
   cout << "d: Remover objeto selecionado" << endl;
   cout << "x: Remover ultimo objeto" << endl;
-  cout << "=: Remover arquivo de save" << endl; //TODO: this
+  cout << "=: Remover arquivo de save e reiniciar" << endl; //TODO: this
   cout << "q: Fechar" << endl;
 
 
   readSave();
   // GUI gui(800,600); // (largura, altura)
   GUI gui = GUI(800, 600, desenha, teclado);
+
+  //GUI gui2 = GUI(500, 200, desenha2);
 }

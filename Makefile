@@ -11,7 +11,7 @@ BIB_DIR = bib
 BUILD_DIR = build
 
 # Libraries
-LIBS = -lGL -lGLU -lglut -l3ds -lSDL2_image -lIL -lSDL_image
+LIBS = -lGL -lGLU -lglut -l3ds -lSDL2_image -lIL -lSDL_image -lpthread
 
 # Source files
 SRCS = $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(GUI_GLUT_DIR)/*.cpp) $(wildcard $(BIB_DIR)/*.cpp) main.cpp
