@@ -572,75 +572,75 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
       break;
     case 1:
       // Camera atrás do balcão
-      glutGUI::cam->e.x = -0.41189;
-      glutGUI::cam->e.y = 1.90996;
-      glutGUI::cam->e.z = -4.75755;
-      glutGUI::cam->c.x = -0.538113;
-      glutGUI::cam->c.y = 1.69438;
-      glutGUI::cam->c.z = -3.43081;
-      glutGUI::cam->u.x = -0.0151239;
-      glutGUI::cam->u.y = 0.987168;
-      glutGUI::cam->u.z = 0.158969;
+      glutGUI::cam->e.x = -0.41;
+      glutGUI::cam->e.y = 1.9;
+      glutGUI::cam->e.z = -4.75;
+      glutGUI::cam->c.x = -0.53;
+      glutGUI::cam->c.y = 1.69;
+      glutGUI::cam->c.z = -3.43;
+      glutGUI::cam->u.x = -0.015;
+      glutGUI::cam->u.y = 0.987;
+      glutGUI::cam->u.z = 0.16;
       break;
     case 2:
       // Camera no palco (microfone)
-      glutGUI::cam->e.x = 4.23509;
-      glutGUI::cam->e.y = 3.01768;
-      glutGUI::cam->e.z = -5.59856;
-      glutGUI::cam->c.x = 3.59793;
-      glutGUI::cam->c.y = 2.53757;
-      glutGUI::cam->c.z = -4.15427;
-      glutGUI::cam->u.x = -0.117445;
-      glutGUI::cam->u.y = 0.956731;
-      glutGUI::cam->u.z = 0.266218;
+      glutGUI::cam->e.x = 4.235;
+      glutGUI::cam->e.y = 3.018;
+      glutGUI::cam->e.z = -5.60;
+      glutGUI::cam->c.x = 3.60;
+      glutGUI::cam->c.y = 2.54;
+      glutGUI::cam->c.z = -4.15;
+      glutGUI::cam->u.x = -0.12;
+      glutGUI::cam->u.y = 0.96;
+      glutGUI::cam->u.z = 0.27;
       break;
     case 3:
       // Camera na mesa 3 (olhando pro palco)
-      glutGUI::cam->e.x = -2.90641;
-      glutGUI::cam->e.y = 1.44431;
-      glutGUI::cam->e.z = 5.22523;
-      glutGUI::cam->c.x = -0.643892;
-      glutGUI::cam->c.y = 1.00152;
-      glutGUI::cam->c.z = 0.176711;
-      glutGUI::cam->u.x = 0.0326277;
-      glutGUI::cam->u.y = 0.996812;
-      glutGUI::cam->u.z = -0.0728044;
+      glutGUI::cam->e.x = -2.9;
+      glutGUI::cam->e.y = 1.45;
+      glutGUI::cam->e.z = 5.22;
+      glutGUI::cam->c.x = -0.643;
+      glutGUI::cam->c.y = 1;
+      glutGUI::cam->c.z = 0.176;
+      glutGUI::cam->u.x = 0.032;
+      glutGUI::cam->u.y = 0.997;
+      glutGUI::cam->u.z = -0.0728;
       break;
     case 4:
       // Visão completa zoom out
       glutGUI::cam->e.x = 11.571;
       glutGUI::cam->e.y = 12.1003;
       glutGUI::cam->e.z = 17.1499;
-      glutGUI::cam->c.x = -0.0428676;
-      glutGUI::cam->c.y = 1.51427;
-      glutGUI::cam->c.z = -0.457272;
-      glutGUI::cam->u.x = -0.246984;
-      glutGUI::cam->u.y = 0.893753;
-      glutGUI::cam->u.z = -0.374439;
+      glutGUI::cam->c.x = -0.0428;
+      glutGUI::cam->c.y = 1.51;
+      glutGUI::cam->c.z = -0.46;
+      glutGUI::cam->u.x = -0.25;
+      glutGUI::cam->u.y = 0.894;
+      glutGUI::cam->u.z = -0.374;
       break;
     case 5:
       // Visão da mesa pro balcao
-      glutGUI::cam->e.x = 4.53564;
-      glutGUI::cam->e.y = 1.44621;
-      glutGUI::cam->e.z = 2.13429;
-      glutGUI::cam->c.x = 4.03444;
-      glutGUI::cam->c.y = 1.39042;
-      glutGUI::cam->c.z = 1.9932;
-      glutGUI::cam->u.x = -0.102546;
-      glutGUI::cam->u.y = 0.994309;
-      glutGUI::cam->u.z = -0.0288652;
+      glutGUI::cam->e.x = 4.535;
+      glutGUI::cam->e.y = 1.446;
+      glutGUI::cam->e.z = 2.134;
+      glutGUI::cam->c.x = 4.034;
+      glutGUI::cam->c.y = 1.390;
+      glutGUI::cam->c.z = 1.993;
+      glutGUI::cam->u.x = -0.102;
+      glutGUI::cam->u.y = 0.994;
+      glutGUI::cam->u.z = -0.0288;
       break;
     case 6:
       // visão do balcao para o palco
-      glutGUI::cam->e.x = -3.15839;
-      glutGUI::cam->e.y = 1.27592;
-      glutGUI::cam->e.z = -1.77695;
-      glutGUI::cam->c.x = -3.06728;
-      glutGUI::cam->c.y = 1.27951;
-      glutGUI::cam->c.z = -1.81818;
-      glutGUI::cam->u.x = -0.0326523;
-      glutGUI::cam->u.y = 0.999358;
-      glutGUI::cam->u.z = 0.0147753;
+      glutGUI::cam->e.x = -3.16;
+      glutGUI::cam->e.y = 1.28;
+      glutGUI::cam->e.z = -1.78;
+      glutGUI::cam->c.x = -3.067;
+      glutGUI::cam->c.y = 1.27;
+      glutGUI::cam->c.z = -1.81;
+      glutGUI::cam->u.x = -0.0326;
+      glutGUI::cam->u.y = 0.1;
+      glutGUI::cam->u.z = 0.015;
       break;
     default:
       camera_presets = 0;
@@ -823,13 +823,12 @@ int main(int argc, char *argv[])
   cout << "l: Mover luz" << endl;
   cout << "d: Remover objeto selecionado" << endl;
   cout << "x: Remover ultimo objeto" << endl;
-  cout << "=: Remover arquivo de save e reiniciar" << endl; //TODO: this
+  cout << "=: Remover arquivo de save e reiniciar" << endl; // TODO: this
   cout << "q: Fechar" << endl;
-
 
   readSave();
   // GUI gui(800,600); // (largura, altura)
   GUI gui = GUI(800, 600, desenha, teclado);
 
-  //GUI gui2 = GUI(500, 200, desenha2);
+  // GUI gui2 = GUI(500, 200, desenha2);
 }
