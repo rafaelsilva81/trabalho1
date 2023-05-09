@@ -42,9 +42,9 @@ void Barril::criar()
     GUI::setColor(0.588, 0.439, 0.2, 1, true);
   }
 
+  glTranslatef(0, 0, 0);
+  glRotatef(-90, 1, 0, 0);
   glScalef(0.02, 0.02, 0.02);
-  glRotatef(90, 1, 0, 0);
-  glTranslatef(0, 0, -43);
 
   model->draw(false); // Só pinta se não estiver selecionado
 }
