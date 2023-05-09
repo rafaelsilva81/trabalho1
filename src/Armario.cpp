@@ -31,9 +31,9 @@ void Armario::criar()
     GUI::drawOrigin(1);
   }
 
-  glScalef(0.02, 0.02, 0.02);
   glRotatef(1, 180, 0, 0);
   glTranslatef(0, 1, 0);
+  glScalef(0.02, 0.02, 0.02);
 
   if (selected)
   {

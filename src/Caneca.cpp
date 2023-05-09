@@ -41,10 +41,10 @@ void Caneca::criar()
     GUI::setColor(0.8, 0.8, 0.8, 1, true);
   }
 
-  glScalef(0.03, 0.03, 0.03);
   glRotatef(-90, 1, 0, 0);
   glTranslatef(0, 1, 0);
-
+  glScalef(0.02, 0.02, 0.02);
+  
   model->draw(false); // Só pinta se não estiver selecionado
 }
 
