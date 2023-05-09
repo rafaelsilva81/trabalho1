@@ -41,9 +41,10 @@ void Tamborete::criar()
     GUI::setColor(0.5451, 0.2706, 0.0745, 1, true); // Pintura cor da madeira
   }
 
-  glScalef(0.003, 0.003, 0.003);
+  glTranslatef(0, 0, 0);
   glRotatef(-90, 1, 0, 0);
-  glTranslatef(0, 1, 0);
+  glScalef(0.003, 0.003, 0.003);
+
 
   model->draw(false); // Só pinta se não estiver selecionado
 }

@@ -42,9 +42,10 @@ void Microfone::criar()
     GUI::setColor(0.5804, 0.6392, 0.7216, 1, true);
   }
 
-  glScalef(0.012, 0.012, 0.012);
-  glRotatef(270, 90, 0, 0);
+
   glTranslatef(0, 0, 0);
+  glRotatef(270, 90, 0, 0);
+  glScalef(0.012, 0.012, 0.012);
   model->draw(false); // Só pinta se não estiver selecionado
 }
 
