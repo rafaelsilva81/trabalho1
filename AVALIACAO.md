@@ -1,0 +1,30 @@
+# Items para ser avaliados
+
+- [] Objetos
+  - [] Criar um cenaqrio coerente, com objetos diferentes e certo nível de detalhe
+  - [] Modelar objetos com `glBegin()` e `glEnd()`
+  - [] Definir normais corretamente
+  - [] Objetos importados arquivo `.3DS`
+  - [] Definir duas faces inclinadas
+---
+- [] Implementação orientada a objeto
+  - [] Definir a classe objeto e a herança
+  - [] Transformações geométricas (translação, rotação, escala) (atributos nas classes)
+  - [] Seleção de objetos (atributo na classe)
+  - [] Sistema local de referencia (atributo na classe que permite alternar isso)
+---
+- [] Manipulação do vetor de objetos
+  - [] Adicionar objetos
+  - [] Remover objetos
+  - [] Selecionar objetos
+  - [] Transformar objetos
+--- 
+- [] Teclado
+  - [] Teclas para transformações geométricas de um objeto selecionado
+  - [] Teclas para criar, remover e selecionar objetos
+  - [] Teclas para alternar sistema local de referencia
+  - [] Tecla para alternar camera
+  - [] Tecla para salvar
+--- 
+- [] Cameras
+  - [] Definir predefinições de cameras interessantes
