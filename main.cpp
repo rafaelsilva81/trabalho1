@@ -723,7 +723,7 @@ void montarCena()
   GUI::setLight(0, 3, 5, 4, true, false);
 
   // Debug do eixo
-  GUI::drawOriginAL(5, 1);
+  /* GUI::drawOriginAL(5, 1); */
   GUI::setColor(0.8, 0.8, 0.8, 1, true);
   // Piso
   GUI::drawFloor(10, 10, 0.5, 0.5);
