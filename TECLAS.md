@@ -20,5 +20,5 @@
 18. `l`: Mover luz
 19. `d`: Remover objeto selecionado
 20. `x`: Remover ultimo objeto
-21. `=`: Remover arquivo de save e reiniciar
+21. `-`: (DEBUG) Salvar posição da camera
 22. `q`: Fechar

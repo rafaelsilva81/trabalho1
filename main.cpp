@@ -556,11 +556,6 @@ void teclado(unsigned char tecla, int mouseX, int mouseY)
     // Salvar
     saveScene();
     break;
-  case '=':
-    // Remover arquivo de save
-    // TODO:this
-    cout << "apaguei save" << endl;
-    break;
   case 'c':
     camera_presets++;
     /* cout << "Camera Preset: " << camera_presets << endl; */

@@ -1,9 +1,9 @@
 # Items para ser avaliados
 
-- [] Objetos
-  - [] Criar um cenaqrio coerente, com objetos diferentes e certo nível de detalhe
+- [] Objetos e Cenário
+  - [] Criar um cenário coerente, com objetos diferentes e certo nível de detalhe
   - [] Modelar objetos com `glBegin()` e `glEnd()`
-  - [] Definir normais corretamente
+  - [] Definir normais
   - [] Objetos importados arquivo `.3DS`
   - [] Definir duas faces inclinadas
 ---
@@ -28,3 +28,9 @@
 --- 
 - [] Cameras
   - [] Definir predefinições de cameras interessantes
+---
+- [] Adicionais
+  - [] Grid
+  - [] Função para desenhar um texto na tela
+  - [] Função para salvar a posição da camera
+  - [] Implementação do save com JSON
