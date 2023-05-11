@@ -46,8 +46,9 @@ void Palco::criar()
 
   // Palco
   // Face frontal
+  
   glBegin(GL_POLYGON);
-  glNormal3f(0.0, 0.0, 1.5);
+  glNormal3f(0.0, 0.0, 1.0);
   glVertex3f(-1.5, 0, 1.5);
   glVertex3f(1.5, 0, 1.5);
   glVertex3f(1.5, 1, 1.5);
@@ -56,7 +57,7 @@ void Palco::criar()
 
   // Face traseira
   glBegin(GL_POLYGON);
-  glNormal3f(0.0, 0.0, -0.5);
+  glNormal3f(0.0, 0.0, -1);
   glVertex3f(-1.5, 0, -0.5);
   glVertex3f(-1.5, 1, -0.5);
   glVertex3f(1.5, 1, -0.5);
@@ -74,7 +75,7 @@ void Palco::criar()
 
   // Face esquerda
   glBegin(GL_POLYGON);
-  glNormal3f(-1.0, 0.0, 0.0);
+  glNormal3f(1.0, 0.0, 0.0);
   glVertex3f(1.5, 0, -0.5);
   glVertex3f(1.5, 1, -0.5);
   glVertex3f(1.5, 1, 1.5);
@@ -106,7 +107,7 @@ void Palco::criar()
     GUI::setColor(0.9373, 0.2667, 0.2667, 1, true);
   }
 
-  // Rampa
+/*   // Rampa
   glBegin(GL_POLYGON);
   glNormal3f(1, 1, 0);
   glVertex3f(-0.5, 0, 3);
@@ -129,7 +130,7 @@ void Palco::criar()
   glVertex3f(1.5, 1, 1.5);
   glVertex3f(1.5, 0, 3);
   glVertex3f(1.5, 0, 1.5);
-  glEnd();
+  glEnd(); */
 
   /*   GUI::drawBox(0, 0, 1.5, 1.5, 1, 2);
     GUI::drawBox(0, 0, 2, 1.5, 0.5, 2.5); */

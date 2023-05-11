@@ -28,7 +28,7 @@ void Caneca::criar()
 
   if (show_coord)
   {
-    GUI::drawOrigin(1);
+    GUI::drawOrigin(1); // sistema de coordenada local
   }
 
   if (selected)
@@ -44,7 +44,7 @@ void Caneca::criar()
   glTranslatef(0, 0, 0);
   glRotatef(-90, 1, 0, 0);
   glScalef(0.02, 0.02, 0.02);
-  model->draw(false); // Só pinta se não estiver selecionado
+  model->draw(false);
 }
 
 void Caneca::desenha()

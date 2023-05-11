@@ -1,17 +1,17 @@
 # Items para ser avaliados
 
 - [] Objetos e Cenário
-  - [] Criar um cenário coerente, com objetos diferentes e certo nível de detalhe
+  - [x] Criar um cenário coerente, com objetos diferentes e certo nível de detalhe
   - [] Modelar objetos com `glBegin()` e `glEnd()`
-  - [] Definir normais
+  - [x] Definir normais
   - [] Objetos importados arquivo `.3DS`
-  - [] Definir duas faces inclinadas
+  - [x] Definir duas faces inclinadas
 ---
-- [] Implementação orientada a objeto
-  - [] Definir a classe objeto e a herança
-  - [] Transformações geométricas (translação, rotação, escala) (atributos nas classes)
-  - [] Seleção de objetos (atributo na classe)
-  - [] Sistema local de referencia (atributo na classe que permite alternar isso)
+- [x] Implementação orientada a objeto
+  - [x] Definir a classe objeto e a herança
+  - [x] Transformações geométricas (translação, rotação, escala) (atributos nas classes)
+  - [x] Seleção de objetos (atributo na classe)
+  - [x] Sistema local de referencia (atributo na classe que permite alternar isso)
 ---
 - [] Manipulação do vetor de objetos
   - [] Adicionar objetos
